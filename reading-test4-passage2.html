@@ -95,7 +95,7 @@
             display: flex;
             align-items: flex-start;
             gap: 8px;
-            margin-bottom: 6px;
+            margin-bottom: 10px;
         }
         .flag-btn {
             font-size: 17px;
@@ -161,36 +161,28 @@
             background: #f0f5ff;
             border-radius: 3px 3px 0 0;
         }
-        /* === VERTICAL OPTIONS — A B C D E one below another === */
-        .mc-options-vertical {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            margin: 8px 0 12px 0;
-        }
-        .mc-options-vertical label {
+        /* === CHECKBOX STYLE — SELECT 2 ANSWERS (same as Passage 1) === */
+        .mc-option-row {
             display: flex;
             align-items: flex-start;
-            gap: 8px;
-            font-size: 14px;
+            gap: 10px;
+            margin: 6px 0;
             cursor: pointer;
+        }
+        .mc-option-row input[type="checkbox"] {
+            margin-top: 3px;
+            cursor: pointer;
+        }
+        .mc-option-row label {
+            cursor: pointer;
+            font-size: 14px;
             line-height: 1.5;
         }
-        .mc-options-vertical input[type="radio"] {
-            margin-top: 2px;
-            flex-shrink: 0;
-        }
-        .answer-selector {
-            display: flex;
-            gap: 15px;
-            margin: 6px 0 12px 0;
-        }
-        .answer-selector label {
-            display: flex;
-            align-items: center;
-            gap: 4px;
+        .answers-display {
+            margin-top: 10px;
             font-size: 14px;
-            cursor: pointer;
+            font-weight: 500;
+            color: #1f3a5f;
         }
         .context-menu {
             position: absolute;
@@ -440,21 +432,29 @@
                         <span class="flag-btn" onclick="toggleFlag(23)" id="flag23">🚩</span>
                         <p><strong>23–24.</strong> What TWO disadvantages of the stadiums built in the twentieth century are stated in the text?</p>
                     </div>
-                    <!-- VERTICAL OPTIONS — exactly like real IELTS exam -->
-                    <div class="mc-options-vertical">
-                        <label><input type="radio" name="q23" value="A" onchange="saveAnswers()"> A They were too expensive to build.</label>
-                        <label><input type="radio" name="q23" value="B" onchange="saveAnswers()"> B They were less flexible in use.</label>
-                        <label><input type="radio" name="q23" value="C" onchange="saveAnswers()"> C They were often located far from city centres.</label>
-                        <label><input type="radio" name="q23" value="D" onchange="saveAnswers()"> D They were too hot inside.</label>
-                        <label><input type="radio" name="q23" value="E" onchange="saveAnswers()"> E They used too much concrete.</label>
+                    <!-- ONE vertical list — tick TWO checkboxes directly -->
+                    <div class="mc-option-row">
+                        <input type="checkbox" class="q2324-checkbox" value="A" id="q2324_A" onchange="saveAnswers2324()">
+                        <label for="q2324_A"><strong>A</strong> They were too expensive to build.</label>
                     </div>
-                    <p style="margin-top:10px; font-weight:500;">Answer 24:</p>
-                    <div class="mc-options-vertical">
-                        <label><input type="radio" name="q24" value="A" onchange="saveAnswers()"> A They were too expensive to build.</label>
-                        <label><input type="radio" name="q24" value="B" onchange="saveAnswers()"> B They were less flexible in use.</label>
-                        <label><input type="radio" name="q24" value="C" onchange="saveAnswers()"> C They were often located far from city centres.</label>
-                        <label><input type="radio" name="q24" value="D" onchange="saveAnswers()"> D They were too hot inside.</label>
-                        <label><input type="radio" name="q24" value="E" onchange="saveAnswers()"> E They used too much concrete.</label>
+                    <div class="mc-option-row">
+                        <input type="checkbox" class="q2324-checkbox" value="B" id="q2324_B" onchange="saveAnswers2324()">
+                        <label for="q2324_B"><strong>B</strong> They were less flexible in use.</label>
+                    </div>
+                    <div class="mc-option-row">
+                        <input type="checkbox" class="q2324-checkbox" value="C" id="q2324_C" onchange="saveAnswers2324()">
+                        <label for="q2324_C"><strong>C</strong> They were often located far from city centres.</label>
+                    </div>
+                    <div class="mc-option-row">
+                        <input type="checkbox" class="q2324-checkbox" value="D" id="q2324_D" onchange="saveAnswers2324()">
+                        <label for="q2324_D"><strong>D</strong> They were too hot inside.</label>
+                    </div>
+                    <div class="mc-option-row">
+                        <input type="checkbox" class="q2324-checkbox" value="E" id="q2324_E" onchange="saveAnswers2324()">
+                        <label for="q2324_E"><strong>E</strong> They used too much concrete.</label>
+                    </div>
+                    <div class="answers-display" id="answers2324_display">
+                        Answer 23: — &nbsp;&nbsp; Answer 24: —
                     </div>
                 </div>
 
@@ -468,21 +468,29 @@
                         <span class="flag-btn" onclick="toggleFlag(25)" id="flag25">🚩</span>
                         <p><strong>25–26.</strong> What TWO benefits of the new generation of stadiums are mentioned by the writer?</p>
                     </div>
-                    <!-- VERTICAL OPTIONS — exactly like real IELTS exam -->
-                    <div class="mc-options-vertical">
-                        <label><input type="radio" name="q25" value="A" onchange="saveAnswers()"> A They can produce their own electricity.</label>
-                        <label><input type="radio" name="q25" value="B" onchange="saveAnswers()"> B They are built in the city centre.</label>
-                        <label><input type="radio" name="q25" value="C" onchange="saveAnswers()"> C They have a wider range of uses.</label>
-                        <label><input type="radio" name="q25" value="D" onchange="saveAnswers()"> D They cost less to run.</label>
-                        <label><input type="radio" name="q25" value="E" onchange="saveAnswers()"> E They use less building materials.</label>
+                    <!-- ONE vertical list — tick TWO checkboxes directly -->
+                    <div class="mc-option-row">
+                        <input type="checkbox" class="q2526-checkbox" value="A" id="q2526_A" onchange="saveAnswers2526()">
+                        <label for="q2526_A"><strong>A</strong> They can produce their own electricity.</label>
                     </div>
-                    <p style="margin-top:10px; font-weight:500;">Answer 26:</p>
-                    <div class="mc-options-vertical">
-                        <label><input type="radio" name="q26" value="A" onchange="saveAnswers()"> A They can produce their own electricity.</label>
-                        <label><input type="radio" name="q26" value="B" onchange="saveAnswers()"> B They are built in the city centre.</label>
-                        <label><input type="radio" name="q26" value="C" onchange="saveAnswers()"> C They have a wider range of uses.</label>
-                        <label><input type="radio" name="q26" value="D" onchange="saveAnswers()"> D They cost less to run.</label>
-                        <label><input type="radio" name="q26" value="E" onchange="saveAnswers()"> E They use less building materials.</label>
+                    <div class="mc-option-row">
+                        <input type="checkbox" class="q2526-checkbox" value="B" id="q2526_B" onchange="saveAnswers2526()">
+                        <label for="q2526_B"><strong>B</strong> They are built in the city centre.</label>
+                    </div>
+                    <div class="mc-option-row">
+                        <input type="checkbox" class="q2526-checkbox" value="C" id="q2526_C" onchange="saveAnswers2526()">
+                        <label for="q2526_C"><strong>C</strong> They have a wider range of uses.</label>
+                    </div>
+                    <div class="mc-option-row">
+                        <input type="checkbox" class="q2526-checkbox" value="D" id="q2526_D" onchange="saveAnswers2526()">
+                        <label for="q2526_D"><strong>D</strong> They cost less to run.</label>
+                    </div>
+                    <div class="mc-option-row">
+                        <input type="checkbox" class="q2526-checkbox" value="E" id="q2526_E" onchange="saveAnswers2526()">
+                        <label for="q2526_E"><strong>E</strong> They use less building materials.</label>
+                    </div>
+                    <div class="answers-display" id="answers2526_display">
+                        Answer 25: — &nbsp;&nbsp; Answer 26: —
                     </div>
                 </div>
             </div>
@@ -514,9 +522,38 @@
         let dragOffsetX = 0;
         let dragOffsetY = 0;
 
-        // === Save Answers ===
+        // === Save Answers: Q23-24 Checkbox Group ===
+        function saveAnswers2324() {
+            const selected = [];
+            document.querySelectorAll('.q2324-checkbox:checked').forEach(cb => {
+                selected.push(cb.value);
+            });
+            const ans23 = selected[0] || '';
+            const ans24 = selected[1] || '';
+            localStorage.setItem(`${READING_STORAGE_KEY}_q23`, ans23);
+            localStorage.setItem(`${READING_STORAGE_KEY}_q24`, ans24);
+            const disp = document.getElementById('answers2324_display');
+            disp.innerHTML = `Answer 23: ${ans23||'—'} &nbsp;&nbsp; Answer 24: ${ans24||'—'}`;
+            updateStatus();
+        }
+
+        // === Save Answers: Q25-26 Checkbox Group ===
+        function saveAnswers2526() {
+            const selected = [];
+            document.querySelectorAll('.q2526-checkbox:checked').forEach(cb => {
+                selected.push(cb.value);
+            });
+            const ans25 = selected[0] || '';
+            const ans26 = selected[1] || '';
+            localStorage.setItem(`${READING_STORAGE_KEY}_q25`, ans25);
+            localStorage.setItem(`${READING_STORAGE_KEY}_q26`, ans26);
+            const disp = document.getElementById('answers2526_display');
+            disp.innerHTML = `Answer 25: ${ans25||'—'} &nbsp;&nbsp; Answer 26: ${ans26||'—'}`;
+            updateStatus();
+        }
+
+        // === Save Text Answers Q14-22 ===
         function saveAnswers() {
-            // Text answers Q14–22
             for (let q = 14; q <= 22; q++) {
                 const el = document.getElementById(`q${q}_input`);
                 if (el) {
@@ -525,30 +562,33 @@
                     localStorage.setItem(`${READING_STORAGE_KEY}_q${q}`, val);
                 }
             }
-            // Multiple choice answers Q23–26 (radio buttons)
-            for (let q = 23; q <= 26; q++) {
-                const sel = document.querySelector(`input[name="q${q}"]:checked`);
-                const val = sel ? sel.value : '';
-                localStorage.setItem(`${READING_STORAGE_KEY}_q${q}`, val);
-            }
             updateStatus();
         }
 
         // === Load Answers ===
         function loadAnswers() {
-            // Text answers Q14–22
+            // Text answers Q14-22
             for (let q = 14; q <= 22; q++) {
                 const val = localStorage.getItem(`${READING_STORAGE_KEY}_q${q}`) || '';
                 const el = document.getElementById(`q${q}_input`);
                 if (el) el.value = val;
             }
-            // Multiple choice answers Q23–26
-            for (let q = 23; q <= 26; q++) {
-                const val = localStorage.getItem(`${READING_STORAGE_KEY}_q${q}`);
-                document.querySelectorAll(`input[name="q${q}"]`).forEach(radio => {
-                    radio.checked = (radio.value === val);
-                });
-            }
+            // Q23-24
+            const ans23 = localStorage.getItem(`${READING_STORAGE_KEY}_q23`) || '';
+            const ans24 = localStorage.getItem(`${READING_STORAGE_KEY}_q24`) || '';
+            document.querySelectorAll('.q2324-checkbox').forEach(cb => {
+                cb.checked = (cb.value === ans23 || cb.value === ans24);
+            });
+            document.getElementById('answers2324_display').innerHTML = 
+                `Answer 23: ${ans23||'—'} &nbsp;&nbsp; Answer 24: ${ans24||'—'}`;
+            // Q25-26
+            const ans25 = localStorage.getItem(`${READING_STORAGE_KEY}_q25`) || '';
+            const ans26 = localStorage.getItem(`${READING_STORAGE_KEY}_q26`) || '';
+            document.querySelectorAll('.q2526-checkbox').forEach(cb => {
+                cb.checked = (cb.value === ans25 || cb.value === ans26);
+            });
+            document.getElementById('answers2526_display').innerHTML = 
+                `Answer 25: ${ans25||'—'} &nbsp;&nbsp; Answer 26: ${ans26||'—'}`;
             // Restore flags
             for (let q = Q_START; q <= Q_END; q++) {
                 const flagged = localStorage.getItem(`${passageId}_flag_${q}`) === 'true';
@@ -591,7 +631,9 @@
                 localStorage.removeItem(`${passageId}_flag_${q}`);
             }
             document.querySelectorAll('.answer-input, .summary-input').forEach(i => i.value = '');
-            document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+            document.querySelectorAll('.q2324-checkbox, .q2526-checkbox').forEach(cb => cb.checked = false);
+            document.getElementById('answers2324_display').innerHTML = 'Answer 23: — &nbsp;&nbsp; Answer 24: —';
+            document.getElementById('answers2526_display').innerHTML = 'Answer 25: — &nbsp;&nbsp; Answer 26: —';
             document.querySelectorAll('.flag-btn').forEach(f => f.classList.remove('flagged'));
             document.querySelectorAll('.highlight').forEach(s => {
                 const p = s.parentNode;
@@ -708,7 +750,7 @@
         function saveNotes(){const a=[];document.querySelectorAll('.sticky-note').forEach(n=>a.push({id:n.id,l:n.style.left,t:n.style.top,x:n.querySelector('.note-textarea').value}));localStorage.setItem(`${passageId}_notes`,JSON.stringify(a));}
         function loadNotes(){const j=localStorage.getItem(`${passageId}_notes`);if(!j)return;JSON.parse(j).forEach(n=>{const d=document.createElement('div');d.className='sticky-note';d.id=n.id;d.innerHTML=`<div class="note-header" onmousedown="startDrag(event,'${n.id}')">Note <span class="note-close" onclick="closeNote('${n.id}')">×</span></div><textarea class="note-textarea">${n.x}</textarea>`;d.style.left=n.l;d.style.top=n.t;document.body.appendChild(d);const m=parseInt(n.id.split('_')[1]);if(m>lastNoteId)lastNoteId=m;});}
 
-        // === Auto-save on ANY input change ===
+        // === Auto-save on input change ===
         document.addEventListener('input', e => {
             if (e.target.matches('.answer-input, .summary-input')) {
                 saveAnswers();
