@@ -109,45 +109,66 @@
         .q-text {
             flex: 1;
         }
+        .answer-box {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 32px;
+            border: 2px solid #ccc;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 18px;
+            color: #1f3a5f;
+            background: #fff;
+            margin-left: 10px;
+            transition: all 0.2s;
+        }
+        .answer-box.filled {
+            border-color: #1f3a5f;
+            background: #e6f0ff;
+        }
+        .answer-slots {
+            display: flex;
+            gap: 8px;
+            margin-left: 10px;
+        }
+        /* Option styling with tick box */
         .options {
-            margin: 6px 0 6px 43px;
+            margin: 8px 0 8px 45px;
         }
         .option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 10px;
             margin-bottom: 6px;
             font-size: 15px;
+            border-radius: 5px;
             cursor: pointer;
-            padding: 3px 6px;
-            border-radius: 3px;
+            transition: background 0.2s;
         }
         .option:hover {
             background-color: #f0f4f8;
         }
-        .option.selected {
-            background-color: #e6f0ff;
-            font-weight: bold;
-            color: #1f3a5f;
-        }
-        .ans-box {
-            display: inline-block;
-            width: 36px;
-            height: 28px;
-            line-height: 26px;
-            text-align: center;
-            border: 1px solid #bbb;
-            border-radius: 4px;
-            font-weight: bold;
-            background: #fff;
-            margin-left: 8px;
-            font-size: 15px;
-        }
-        .ans-box.filled {
-            background-color: #e6f0ff;
-            border-color: #1f3a5f;
-        }
-        .two-ans {
+        .tick-box {
             display: flex;
-            gap: 6px;
-            margin-left: 8px;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            border: 2px solid #bbb;
+            border-radius: 4px;
+            flex-shrink: 0;
+            font-weight: bold;
+            font-size: 14px;
+            color: transparent;
+            transition: all 0.2s;
+        }
+        .option.selected .tick-box {
+            border-color: #1f3a5f;
+            background-color: #1f3a5f;
+            color: #fff;
         }
         /* Highlight style */
         .user-highlight {
@@ -360,19 +381,20 @@
             <div class="instruction">
                 <strong>Questions 11–14</strong><br>
                 Choose the correct letter, <strong>A, B or C</strong>.
+                <br><small>Click the box to select. Click again to remove.</small>
             </div>
 
             <div class="question-block">
                 <div class="q-line">
                     <span class="q-num">11</span>
                     <span class="q-text">What is the maximum number of people who can stand on each side of the boat?
-                        <span class="ans-box" id="ans-box-11" data-q="11"></span>
+                        <span class="answer-box" id="ans-box-11"></span>
                     </span>
                 </div>
                 <div class="options">
-                    <div class="option" data-q="11" data-val="A">A 9</div>
-                    <div class="option" data-q="11" data-val="B">B 15</div>
-                    <div class="option" data-q="11" data-val="C">C 18</div>
+                    <div class="option" data-q="11" data-val="A"><span class="tick-box">✓</span> A 9</div>
+                    <div class="option" data-q="11" data-val="B"><span class="tick-box">✓</span> B 15</div>
+                    <div class="option" data-q="11" data-val="C"><span class="tick-box">✓</span> C 18</div>
                 </div>
             </div>
 
@@ -380,13 +402,13 @@
                 <div class="q-line">
                     <span class="q-num">12</span>
                     <span class="q-text">What colour are the tour boats?
-                        <span class="ans-box" id="ans-box-12" data-q="12"></span>
+                        <span class="answer-box" id="ans-box-12"></span>
                     </span>
                 </div>
                 <div class="options">
-                    <div class="option" data-q="12" data-val="A">A dark red</div>
-                    <div class="option" data-q="12" data-val="B">B jet black</div>
-                    <div class="option" data-q="12" data-val="C">C light green</div>
+                    <div class="option" data-q="12" data-val="A"><span class="tick-box">✓</span> A dark red</div>
+                    <div class="option" data-q="12" data-val="B"><span class="tick-box">✓</span> B jet black</div>
+                    <div class="option" data-q="12" data-val="C"><span class="tick-box">✓</span> C light green</div>
                 </div>
             </div>
 
@@ -394,13 +416,13 @@
                 <div class="q-line">
                     <span class="q-num">13</span>
                     <span class="q-text">Which lunchbox is suitable for someone who doesn't eat meat or fish?
-                        <span class="ans-box" id="ans-box-13" data-q="13"></span>
+                        <span class="answer-box" id="ans-box-13"></span>
                     </span>
                 </div>
                 <div class="options">
-                    <div class="option" data-q="13" data-val="A">A Lunchbox 1</div>
-                    <div class="option" data-q="13" data-val="B">B Lunchbox 2</div>
-                    <div class="option" data-q="13" data-val="C">C Lunchbox 3</div>
+                    <div class="option" data-q="13" data-val="A"><span class="tick-box">✓</span> A Lunchbox 1</div>
+                    <div class="option" data-q="13" data-val="B"><span class="tick-box">✓</span> B Lunchbox 2</div>
+                    <div class="option" data-q="13" data-val="C"><span class="tick-box">✓</span> C Lunchbox 3</div>
                 </div>
             </div>
 
@@ -408,13 +430,13 @@
                 <div class="q-line">
                     <span class="q-num">14</span>
                     <span class="q-text">What should people do with their litter?
-                        <span class="ans-box" id="ans-box-14" data-q="14"></span>
+                        <span class="answer-box" id="ans-box-14"></span>
                     </span>
                 </div>
                 <div class="options">
-                    <div class="option" data-q="14" data-val="A">A take it home</div>
-                    <div class="option" data-q="14" data-val="B">B hand it to a member of staff</div>
-                    <div class="option" data-q="14" data-val="C">C put it in the bins provided on the boat</div>
+                    <div class="option" data-q="14" data-val="A"><span class="tick-box">✓</span> A take it home</div>
+                    <div class="option" data-q="14" data-val="B"><span class="tick-box">✓</span> B hand it to a member of staff</div>
+                    <div class="option" data-q="14" data-val="C"><span class="tick-box">✓</span> C put it in the bins provided on the boat</div>
                 </div>
             </div>
 
@@ -422,24 +444,25 @@
             <div class="instruction">
                 <strong>Questions 15–16</strong><br>
                 Choose <strong>TWO</strong> letters, <strong>A–E</strong>.
+                <br><small>Click TWO options. Click again to remove.</small>
             </div>
             <div class="question-block">
                 <div class="q-title">Which TWO features of the lighthouse does Lou mention?</div>
                 <div class="q-line">
                     <span class="q-num">15–16</span>
                     <span class="q-text">
-                        <div class="two-ans">
-                            <span class="ans-box" id="ans-box-15" data-q="15"></span>
-                            <span class="ans-box" id="ans-box-16" data-q="16"></span>
+                        <div class="answer-slots">
+                            <span class="answer-box" id="ans-box-15"></span>
+                            <span class="answer-box" id="ans-box-16"></span>
                         </div>
                     </span>
                 </div>
                 <div class="options">
-                    <div class="option" data-q="multi1516" data-val="A">A why it was built</div>
-                    <div class="option" data-q="multi1516" data-val="B">B who built it</div>
-                    <div class="option" data-q="multi1516" data-val="C">C how long it took to build</div>
-                    <div class="option" data-q="multi1516" data-val="D">D who staffed it</div>
-                    <div class="option" data-q="multi1516" data-val="E">E what it was built with</div>
+                    <div class="option" data-group="1516" data-val="A"><span class="tick-box">✓</span> A why it was built</div>
+                    <div class="option" data-group="1516" data-val="B"><span class="tick-box">✓</span> B who built it</div>
+                    <div class="option" data-group="1516" data-val="C"><span class="tick-box">✓</span> C how long it took to build</div>
+                    <div class="option" data-group="1516" data-val="D"><span class="tick-box">✓</span> D who staffed it</div>
+                    <div class="option" data-group="1516" data-val="E"><span class="tick-box">✓</span> E what it was built with</div>
                 </div>
             </div>
 
@@ -453,18 +476,18 @@
                 <div class="q-line">
                     <span class="q-num">17–18</span>
                     <span class="q-text">
-                        <div class="two-ans">
-                            <span class="ans-box" id="ans-box-17" data-q="17"></span>
-                            <span class="ans-box" id="ans-box-18" data-q="18"></span>
+                        <div class="answer-slots">
+                            <span class="answer-box" id="ans-box-17"></span>
+                            <span class="answer-box" id="ans-box-18"></span>
                         </div>
                     </span>
                 </div>
                 <div class="options">
-                    <div class="option" data-q="multi1718" data-val="A">A sea eagles</div>
-                    <div class="option" data-q="multi1718" data-val="B">B fur seals</div>
-                    <div class="option" data-q="multi1718" data-val="C">C dolphins</div>
-                    <div class="option" data-q="multi1718" data-val="D">D whales</div>
-                    <div class="option" data-q="multi1718" data-val="E">E penguins</div>
+                    <div class="option" data-group="1718" data-val="A"><span class="tick-box">✓</span> A sea eagles</div>
+                    <div class="option" data-group="1718" data-val="B"><span class="tick-box">✓</span> B fur seals</div>
+                    <div class="option" data-group="1718" data-val="C"><span class="tick-box">✓</span> C dolphins</div>
+                    <div class="option" data-group="1718" data-val="D"><span class="tick-box">✓</span> D whales</div>
+                    <div class="option" data-group="1718" data-val="E"><span class="tick-box">✓</span> E penguins</div>
                 </div>
             </div>
 
@@ -478,18 +501,18 @@
                 <div class="q-line">
                     <span class="q-num">19–20</span>
                     <span class="q-text">
-                        <div class="two-ans">
-                            <span class="ans-box" id="ans-box-19" data-q="19"></span>
-                            <span class="ans-box" id="ans-box-20" data-q="20"></span>
+                        <div class="answer-slots">
+                            <span class="answer-box" id="ans-box-19"></span>
+                            <span class="answer-box" id="ans-box-20"></span>
                         </div>
                     </span>
                 </div>
                 <div class="options">
-                    <div class="option" data-q="multi1920" data-val="A">A Only large tourist boats can visit them.</div>
-                    <div class="option" data-q="multi1920" data-val="B">B The entrances to them are often blocked.</div>
-                    <div class="option" data-q="multi1920" data-val="C">C It is too dangerous for individuals to go near them.</div>
-                    <div class="option" data-q="multi1920" data-val="D">D Someone will explain what is inside them.</div>
-                    <div class="option" data-q="multi1920" data-val="E">E They cannot be reached on foot.</div>
+                    <div class="option" data-group="1920" data-val="A"><span class="tick-box">✓</span> A Only large tourist boats can visit them.</div>
+                    <div class="option" data-group="1920" data-val="B"><span class="tick-box">✓</span> B The entrances to them are often blocked.</div>
+                    <div class="option" data-group="1920" data-val="C"><span class="tick-box">✓</span> C It is too dangerous for individuals to go near them.</div>
+                    <div class="option" data-group="1920" data-val="D"><span class="tick-box">✓</span> D Someone will explain what is inside them.</div>
+                    <div class="option" data-group="1920" data-val="E"><span class="tick-box">✓</span> E They cannot be reached on foot.</div>
                 </div>
             </div>
 
@@ -557,11 +580,11 @@
         // ✅ Shared storage key — matches answers-review.html
         const LISTENING_STORAGE_KEY = 'Listening_Test';
 
-        // Mapping for multi-select groups
-        const multiGroups = {
-            'multi1516': [15, 16],
-            'multi1718': [17, 18],
-            'multi1920': [19, 20]
+        // Mapping for TWO-answer groups
+        const groupSlots = {
+            '1516': [15, 16],
+            '1718': [17, 18],
+            '1920': [19, 20]
         };
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -572,52 +595,71 @@
                 if (savedValue) {
                     box.textContent = savedValue;
                     box.classList.add('filled');
+                    highlightOption(i, savedValue);
                     markAnswered(i);
                 }
             }
 
-            // Single choice click handler
-            document.querySelectorAll('.option[data-q]:not([data-q^="multi"])').forEach(opt => {
+            // Click handler for ALL options
+            document.querySelectorAll('.option').forEach(opt => {
                 opt.addEventListener('click', function() {
-                    const qNum = parseInt(this.dataset.q);
-                    const val = this.dataset.val;
-                    const box = document.getElementById('ans-box-' + qNum);
-                    box.textContent = val;
-                    box.classList.add('filled');
-                    localStorage.setItem(LISTENING_STORAGE_KEY + '_q' + qNum, val);
-                    markAnswered(qNum);
-                });
-            });
-
-            // Multi-choice click handler
-            document.querySelectorAll('.option[data-q^="multi"]').forEach(opt => {
-                opt.addEventListener('click', function() {
-                    const groupKey = this.dataset.q;
-                    const pair = multiGroups[groupKey];
-                    if (!pair) return;
+                    const qSingle = this.dataset.q;
+                    const groupKey = this.dataset.group;
                     const val = this.dataset.val;
 
-                    // Check if already selected — remove if so
-                    let targetQ = null;
-                    for (const q of pair) {
-                        const box = document.getElementById('ans-box-' + q);
+                    // --- Single answer (Q11-14) ---
+                    if (qSingle) {
+                        const qNum = parseInt(qSingle);
+                        const box = document.getElementById('ans-box-' + qNum);
+                        // If clicking same option → deselect
                         if (box.textContent === val) {
                             box.textContent = '';
                             box.classList.remove('filled');
-                            localStorage.removeItem(LISTENING_STORAGE_KEY + '_q' + q);
-                            unmarkAnswered(q);
-                            return;
-                        }
-                    }
-                    // Find empty slot and assign
-                    for (const q of pair) {
-                        const box = document.getElementById('ans-box-' + q);
-                        if (!box.textContent) {
+                            unhighlightAll(qSingle);
+                            localStorage.removeItem(LISTENING_STORAGE_KEY + '_q' + qNum);
+                            unmarkAnswered(qNum);
+                        } else {
                             box.textContent = val;
                             box.classList.add('filled');
-                            localStorage.setItem(LISTENING_STORAGE_KEY + '_q' + q, val);
-                            markAnswered(q);
-                            break;
+                            unhighlightAll(qSingle);
+                            this.classList.add('selected');
+                            localStorage.setItem(LISTENING_STORAGE_KEY + '_q' + qNum, val);
+                            markAnswered(qNum);
+                        }
+                    }
+
+                    // --- TWO-answer groups (Q15-20) ---
+                    if (groupKey) {
+                        const slots = groupSlots[groupKey];
+                        if (!slots) return;
+
+                        // Check if already selected → remove it
+                        let removed = false;
+                        for (const q of slots) {
+                            const box = document.getElementById('ans-box-' + q);
+                            if (box.textContent === val) {
+                                box.textContent = '';
+                                box.classList.remove('filled');
+                                localStorage.removeItem(LISTENING_STORAGE_KEY + '_q' + q);
+                                unmarkAnswered(q);
+                                this.classList.remove('selected');
+                                removed = true;
+                                break;
+                            }
+                        }
+                        if (removed) return;
+
+                        // Find empty slot → assign
+                        for (const q of slots) {
+                            const box = document.getElementById('ans-box-' + q);
+                            if (!box.textContent) {
+                                box.textContent = val;
+                                box.classList.add('filled');
+                                localStorage.setItem(LISTENING_STORAGE_KEY + '_q' + q, val);
+                                markAnswered(q);
+                                this.classList.add('selected');
+                                break;
+                            }
                         }
                     }
                 });
@@ -693,6 +735,21 @@
             };
         });
 
+        // Helper: highlight option by question number and value
+        function highlightOption(qNum, val) {
+            document.querySelectorAll(`.option[data-q="${qNum}"][data-val="${val}"]`).forEach(o => o.classList.add('selected'));
+            for (const [key, slots] of Object.entries(groupSlots)) {
+                if (slots.includes(qNum)) {
+                    document.querySelectorAll(`.option[data-group="${key}"][data-val="${val}"]`).forEach(o => o.classList.add('selected'));
+                }
+            }
+        }
+
+        // Helper: remove highlight for single question
+        function unhighlightAll(q) {
+            document.querySelectorAll(`.option[data-q="${q}"]`).forEach(o => o.classList.remove('selected'));
+        }
+
         function clearAll() {
             if (!confirm("Clear ALL your answers, highlights, and notes? This cannot be undone.")) return;
             for (let i = 11; i <= 20; i++) {
@@ -701,6 +758,7 @@
                 if (box) { box.textContent = ''; box.classList.remove('filled'); }
                 unmarkAnswered(i);
             }
+            document.querySelectorAll('.option.selected').forEach(o => o.classList.remove('selected'));
             document.querySelectorAll('.user-highlight').forEach(span => {
                 span.replaceWith(document.createTextNode(span.textContent));
             });
