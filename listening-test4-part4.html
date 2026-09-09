@@ -340,14 +340,11 @@
         </div>
         <div class="content" id="highlightArea">
             <h2>Section 4 – Questions 31–40</h2>
-
             <div class="instruction">
                 <strong>Complete the notes below.</strong><br>
                 Write <strong>ONE WORD ONLY</strong> for each answer.
             </div>
-
             <div class="notes-title">Labyrinths</div>
-
             <div class="notes-outline">
                 <!-- Definition -->
                 <div class="notes-section">
@@ -357,7 +354,6 @@
                         <span>a winding spiral path leading to a central area</span>
                     </div>
                 </div>
-
                 <!-- Labyrinths compared with mazes -->
                 <div class="notes-section">
                     <div class="sec-heading">Labyrinths compared with mazes</div>
@@ -394,7 +390,6 @@
                         <span>and prayer</span>
                     </div>
                 </div>
-
                 <!-- Early examples -->
                 <div class="notes-section">
                     <div class="sec-heading">Early examples of the labyrinth spiral</div>
@@ -416,7 +411,6 @@
                         <input type="text" class="ans-input" id="ans-box-36" data-q="36" maxlength="25" placeholder="">
                     </div>
                 </div>
-
                 <!-- Walking labyrinths -->
                 <div class="notes-section">
                     <div class="sec-heading">Walking labyrinths</div>
@@ -428,7 +422,6 @@
                         <span>at its centre</span>
                     </div>
                 </div>
-
                 <!-- Labyrinths nowadays -->
                 <div class="notes-section">
                     <div class="sec-heading">Labyrinths nowadays</div>
@@ -461,7 +454,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Question Status Bar -->
             <div class="question-status">
                 <span class="part-label">P1</span>
@@ -512,20 +504,16 @@
                 <div class="q-indicator current" data-q="39">39</div>
                 <div class="q-indicator current" data-q="40">40</div>
             </div>
-
             <button class="clear-btn" onclick="clearAll()">Clear All Answers</button>
-
             <div class="nav-container">
                 <a href="listening-test4-part3.html" class="nav-btn">←</a>
-                <a href="answers-review.html" class="nav-btn">✓</a>
+                <a href="reading-intro.html" class="nav-btn">✓</a>
             </div>
         </div>
     </div>
-
     <script>
         // ✅ Shared storage key — matches answers-review.html
         const LISTENING_STORAGE_KEY = 'Listening_Test';
-
         document.addEventListener('DOMContentLoaded', function() {
             // Load saved answers Q31-40
             for (let i = 31; i <= 40; i++) {
@@ -538,16 +526,13 @@
                     markAnswered(i);
                 }
             }
-
             // Save answers as you type
             for (let i = 31; i <= 40; i++) {
                 const input = document.getElementById('ans-box-' + i);
                 if (!input) continue;
-
                 input.addEventListener('input', function() {
                     let val = this.value.trim().replace(/\s+/g, ' ');
                     this.value = val;
-
                     const qNum = parseInt(this.dataset.q);
                     if (val) {
                         localStorage.setItem(LISTENING_STORAGE_KEY + '_q' + qNum, val);
@@ -560,13 +545,11 @@
                     }
                 });
             }
-
             // --- Right-click Highlight & Note System ---
             const highlightArea = document.getElementById('highlightArea');
             const contextMenu = document.getElementById('contextMenu');
             let currentRange = null;
             let lastNoteId = 0;
-
             highlightArea.addEventListener('contextmenu', function(e) {
                 const sel = window.getSelection();
                 if (!sel || sel.isCollapsed || !sel.toString().trim()) {
@@ -580,9 +563,7 @@
                 contextMenu.style.top = (rect.bottom + window.scrollY + 5) + 'px';
                 contextMenu.style.display = 'block';
             });
-
             document.addEventListener('click', () => contextMenu.style.display = 'none');
-
             document.getElementById('menuHighlight').addEventListener('click', function() {
                 if (!currentRange) return;
                 const span = document.createElement('span');
@@ -593,7 +574,6 @@
                 window.getSelection().removeAllRanges();
                 currentRange = null;
             });
-
             document.getElementById('menuRemove').addEventListener('click', function() {
                 if (!currentRange) return;
                 try {
@@ -607,7 +587,6 @@
                 window.getSelection().removeAllRanges();
                 currentRange = null;
             });
-
             document.getElementById('menuNote').addEventListener('click', function() {
                 if (!currentRange) return;
                 const rect = currentRange.getBoundingClientRect();
@@ -625,12 +604,10 @@
                 window.getSelection().removeAllRanges();
                 currentRange = null;
             });
-
             window.closeNote = function(id) {
                 document.getElementById(id)?.remove();
             };
         });
-
         function clearAll() {
             if (!confirm("Clear ALL your answers, highlights, and notes? This cannot be undone.")) return;
             for (let i = 31; i <= 40; i++) {
@@ -647,12 +624,10 @@
             });
             document.querySelectorAll('.sticky-note').forEach(note => note.remove());
         }
-
         function markAnswered(qNum) {
             const el = document.querySelector(`.q-indicator[data-q="${qNum}"]`);
             if (el) el.classList.add('answered');
         }
-
         function unmarkAnswered(qNum) {
             const el = document.querySelector(`.q-indicator[data-q="${qNum}"]`);
             if (el) el.classList.remove('answered');
