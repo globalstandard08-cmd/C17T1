@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Review Your Answers — Writing Test</title>
+    <title>Full Test Review — All Answers</title>
     <style>
         * {
             margin: 0;
@@ -49,65 +49,66 @@
             color: #3b6494;
             font-size: 14px;
         }
-        .answers-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 0;
-        }
-        .answer-block {
-            padding: 25px;
+        .section-block {
+            padding: 22px 25px;
             border-bottom: 1px solid #e2e8f0;
         }
-        .answer-block:last-child {
+        .section-block:last-child {
             border-bottom: none;
         }
-        .task-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid #1f3a5f;
-        }
-        .task-header h2 {
-            font-size: 18px;
+        .section-title {
+            font-size: 17px;
             color: #1f3a5f;
+            margin-bottom: 12px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid #c5d2e3;
         }
-        .word-badge {
-            font-size: 14px;
-            font-weight: bold;
-            padding: 4px 10px;
-            border-radius: 12px;
-            background: #e5e7eb;
-            color: #4b5563;
+        .answers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 8px;
         }
-        .word-badge.good {
-            background: #dcfce7;
-            color: #166534;
-        }
-        .word-badge.warn {
-            background: #fef3c7;
-            color: #b45309;
-        }
-        .word-badge.short {
-            background: #fee2e2;
-            color: #dc2626;
-        }
-        .answer-text {
+        .ans-item {
             background: #f8fafc;
             border: 1px solid #e2e8f0;
-            border-radius: 6px;
-            padding: 18px;
-            min-height: 180px;
-            white-space: pre-wrap;
-            font-size: 15px;
-            line-height: 1.7;
-            color: #1f2937;
+            border-radius: 4px;
+            padding: 6px 8px;
+            font-size: 14px;
         }
-        .empty-note {
+        .ans-num {
+            font-weight: bold;
+            color: #1f3a5f;
+            margin-right: 4px;
+        }
+        .ans-val {
+            color: #1a1a1a;
+        }
+        .ans-empty {
             color: #9ca3af;
             font-style: italic;
         }
+        .writing-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 14px 16px;
+            margin-top: 8px;
+            white-space: pre-wrap;
+            font-size: 14px;
+            line-height: 1.7;
+            color: #1f2937;
+        }
+        .word-badge {
+            display: inline-block;
+            font-size: 13px;
+            font-weight: bold;
+            padding: 3px 9px;
+            border-radius: 12px;
+            margin-left: 10px;
+        }
+        .badge-good { background: #dcfce7; color: #166534; }
+        .badge-ok  { background: #fef3c7; color: #b45309; }
+        .badge-low { background: #fee2e2; color: #dc2626; }
         .nav-bar {
             display: flex;
             justify-content: space-between;
@@ -131,35 +132,18 @@
             align-items: center;
             gap: 6px;
         }
-        .nav-btn:hover {
-            background: #e2eaf3;
-        }
-        .action-buttons {
-            display: flex;
-            gap: 8px;
-        }
-        .export-all-btn {
-            background: #dbeafe;
-            border: 1px solid #93c5fd;
-            color: #1e40af;
-        }
-        .export-all-btn:hover {
-            background: #bfdbfe;
-        }
-        .restart-btn {
-            background: #fff0f0;
-            border: 1px solid #fecaca;
-            color: #dc2626;
-        }
-        .restart-btn:hover {
-            background: #fee2e2;
+        .nav-btn:hover { background: #e2eaf3; }
+        .home-btn { background: #e0e7ff; border-color: #a5b4fc; color: #3730a3; }
+        .export-btn { background: #dbeafe; border-color: #93c5fd; color: #1e40af; }
+        .clear-btn { background: #fff0f0; border-color: #fecaca; color: #dc2626; }
+        .two-col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
         }
         @media (max-width: 768px) {
-            .task-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 6px;
-            }
+            .two-col { grid-template-columns: 1fr; }
+            .answers-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); }
         }
     </style>
 </head>
@@ -169,111 +153,176 @@
         <img src="ielts-logo.png" alt="IELTS Logo" class="ielts-logo">
     </div>
     <div class="intro-section">
-        <h1>📝 Review Your Writing Answers</h1>
-        <p>Check your Task 1 and Task 2 responses below. Click Previous to go back and edit.</p>
+        <h1>📋 Full Test Review — All Answers</h1>
+        <p>Review your Listening, Reading, and Writing answers all in one place.</p>
     </div>
 
-    <div class="answers-grid">
-        <!-- TASK 1 ANSWER -->
-        <div class="answer-block">
-            <div class="task-header">
-                <h2>Task 1 — Summary Response</h2>
-                <div class="word-badge" id="t1Badge">Words: 0 / 150 min</div>
-            </div>
-            <div class="answer-text" id="t1Text">
-                <span class="empty-note">— No answer written yet —</span>
-            </div>
-        </div>
-
-        <!-- TASK 2 ANSWER -->
-        <div class="answer-block">
-            <div class="task-header">
-                <h2>Task 2 — Essay Response</h2>
-                <div class="word-badge" id="t2Badge">Words: 0 / 250 min</div>
-            </div>
-            <div class="answer-text" id="t2Text">
-                <span class="empty-note">— No answer written yet —</span>
-            </div>
+    <!-- ========== LISTENING ========== -->
+    <div class="section-block">
+        <h2 class="section-title">🎧 LISTENING (Questions 1–40)</h2>
+        <div class="answers-grid" id="listeningGrid">
+            <!-- Loaded by JS -->
         </div>
     </div>
 
+    <!-- ========== READING ========== -->
+    <div class="section-block">
+        <h2 class="section-title">📖 READING (Questions 1–40)</h2>
+        <div class="two-col">
+            <div>
+                <strong>Passage 1</strong>
+                <div class="answers-grid" id="reading1Grid"></div>
+            </div>
+            <div>
+                <strong>Passage 2</strong>
+                <div class="answers-grid" id="reading2Grid"></div>
+            </div>
+        </div>
+        <div style="margin-top:12px;">
+            <strong>Passage 3</strong>
+            <div class="answers-grid" id="reading3Grid"></div>
+        </div>
+    </div>
+
+    <!-- ========== WRITING ========== -->
+    <div class="section-block">
+        <h2 class="section-title">✍️ WRITING</h2>
+
+        <div style="margin-bottom:16px;">
+            <strong>Task 1 — Summary Response</strong>
+            <span class="word-badge" id="t1Badge">Words: 0 / 150 min</span>
+            <div class="writing-box" id="t1Text">
+                <span class="ans-empty">— No answer written yet —</span>
+            </div>
+        </div>
+
+        <div>
+            <strong>Task 2 — Essay Response</strong>
+            <span class="word-badge" id="t2Badge">Words: 0 / 250 min</span>
+            <div class="writing-box" id="t2Text">
+                <span class="ans-empty">— No answer written yet —</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== NAVIGATION ========== -->
     <div class="nav-bar">
-        <a href="writing-test-task2.html" class="nav-btn">⬅️ Back to Task 2</a>
-        <div class="action-buttons">
-            <button class="nav-btn export-all-btn" onclick="exportAll()">📥 Download All</button>
-            <button class="nav-btn restart-btn" onclick="restartTest()">🔄 Clear & Restart</button>
+        <a href="writing-test-task2.html" class="nav-btn">⬅️ Back to Test</a>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+            <a href="index.html" class="nav-btn home-btn">🏠 Main Page</a>
+            <button class="nav-btn export-btn" onclick="exportAll()">📥 Download All</button>
+            <button class="nav-btn clear-btn" onclick="clearAll()">🗑️ Clear All</button>
         </div>
     </div>
 </div>
 
 <script>
-// === Load & Count Words ===
+const LS_KEY = 'Reading_Test';
+
+// === Load single answer ===
+function loadAnswer(qNum) {
+    return localStorage.getItem(`${LS_KEY}_q${qNum}`) || '';
+}
+
+// === Build answer grid ===
+function makeGrid(containerId, startQ, endQ) {
+    const container = document.getElementById(containerId);
+    container.innerHTML = '';
+    for (let q = startQ; q <= endQ; q++) {
+        const val = loadAnswer(q);
+        const div = document.createElement('div');
+        div.className = 'ans-item';
+        div.innerHTML = `<span class="ans-num">${q}.</span> ${
+            val ? `<span class="ans-val">${val}</span>` : `<span class="ans-empty">—</span>`
+        }`;
+        container.appendChild(div);
+    }
+}
+
+// === Word counter ===
 function countWords(text) {
     text = text.trim();
     if (!text) return 0;
     return text.replace(/\s+/g, ' ').split(' ').length;
 }
-
 function setBadge(badgeId, wordCount, minWords) {
     const badge = document.getElementById(badgeId);
     badge.textContent = `Words: ${wordCount} / ${minWords} min`;
-    badge.classList.remove('good','warn','short');
-    if (wordCount >= minWords + 20) badge.classList.add('good');
-    else if (wordCount >= minWords) badge.classList.add('warn');
-    else badge.classList.add('short');
+    badge.classList.remove('badge-good','badge-ok','badge-low');
+    badge.classList.add(wordCount >= minWords + 20 ? 'badge-good' : wordCount >= minWords ? 'badge-ok' : 'badge-low');
 }
 
 window.onload = function() {
-    // Load Task 1
-    const t1 = localStorage.getItem('task1Input') || '';
-    if (t1) {
-        document.getElementById('t1Text').textContent = t1;
-        setBadge('t1Badge', countWords(t1), 150);
-    }
+    // --- Listening 1–40 ---
+    makeGrid('listeningGrid', 1, 40);
 
-    // Load Task 2
+    // --- Reading ---
+    makeGrid('reading1Grid', 13, 22);
+    makeGrid('reading2Grid', 23, 26);
+    makeGrid('reading3Grid', 27, 40);
+
+    // --- Writing Task 1 ---
+    const t1 = localStorage.getItem('task1Input') || '';
+    document.getElementById('t1Text').textContent = t1 || '';
+    if (!t1) document.getElementById('t1Text').innerHTML = '<span class="ans-empty">— No answer written yet —</span>';
+    setBadge('t1Badge', countWords(t1), 150);
+
+    // --- Writing Task 2 ---
     const t2 = localStorage.getItem('task2Input') || '';
-    if (t2) {
-        document.getElementById('t2Text').textContent = t2;
-        setBadge('t2Badge', countWords(t2), 250);
-    }
+    document.getElementById('t2Text').textContent = t2 || '';
+    if (!t2) document.getElementById('t2Text').innerHTML = '<span class="ans-empty">— No answer written yet —</span>';
+    setBadge('t2Badge', countWords(t2), 250);
 };
 
-// === Export Both Answers ===
+// === Export ALL answers ===
 function exportAll() {
+    let output = 'IELTS FULL TEST — ALL ANSWERS REVIEW\n' + '='.repeat(55) + '\n\n';
+
+    output += '🎧 LISTENING ANSWERS\n';
+    output += '-'.repeat(30) + '\n';
+    for (let q = 1; q <= 40; q++) {
+        const val = loadAnswer(q) || '—';
+        output += `${String(q).padStart(2,' ').padEnd(4,' ')} ${val}\n`;
+    }
+
+    output += '\n📖 READING ANSWERS\n';
+    output += '-'.repeat(30) + '\n';
+    for (let q = 13; q <= 40; q++) {
+        const val = loadAnswer(q) || '—';
+        output += `${String(q).padStart(2,' ').padEnd(4,' ')} ${val}\n`;
+    }
+
+    output += '\n✍️ WRITING — TASK 1\n';
+    output += '-'.repeat(30) + '\n';
     const t1 = localStorage.getItem('task1Input') || '(No answer written)';
+    output += t1 + `\n\n(Word count: ${countWords(t1)})\n`;
+
+    output += '\n✍️ WRITING — TASK 2\n';
+    output += '-'.repeat(30) + '\n';
     const t2 = localStorage.getItem('task2Input') || '(No answer written)';
-    const combined = `IELTS WRITING — REVIEWED ANSWERS
-══════════════════════════════════
+    output += t2 + `\n\n(Word count: ${countWords(t2)})\n`;
 
-TASK 1
-──────
-${t1}
-
-(Word count: ${countWords(t1)})
-
-══════════════════════════════════
-
-TASK 2
-──────
-${t2}
-
-(Word count: ${countWords(t2)})
-`;
-    const blob = new Blob([combined], { type: "text/plain;charset=utf-8" });
-    const link = document.createElement("a");
+    const blob = new Blob([output], { type: "text/plain;charset=utf-8" });
+    const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
-    link.download = `Writing_Answers_Review_${new Date().toLocaleDateString().replace(/\//g,'-')}.txt`;
+    link.download = `Full_Test_Answers_${new Date().toLocaleDateString().replace(/\//g,'-')}.txt`;
     link.click();
     URL.revokeObjectURL(link.href);
 }
 
-// === Clear All & Restart ===
-function restartTest() {
-    if (!confirm('⚠️ This will CLEAR ALL answers and return to the start.\n\nThis cannot be undone. Continue?')) return;
+// === Clear ALL answers & restart ===
+function clearAll() {
+    if (!confirm('⚠️ This will CLEAR EVERYTHING — Listening, Reading, AND Writing answers.\n\nThis cannot be undone. Continue?')) return;
+    // Clear Reading answers
+    for (let q = 1; q <= 40; q++) localStorage.removeItem(`${LS_KEY}_q${q}`);
+    // Clear flags
+    ['reading-passage1','reading-passage2','reading-passage3'].forEach(p=>{
+        for(let q=1;q<=40;q++) localStorage.removeItem(`${p}_flag_${q}`);
+    });
+    // Clear Writing
     localStorage.removeItem('task1Input');
     localStorage.removeItem('task2Input');
-    window.location.href = 'writing-intro.html';
+    window.location.href = 'index.html';
 }
 </script>
 </body>
