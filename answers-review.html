@@ -65,7 +65,7 @@
         }
         .answers-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
             gap: 8px;
         }
         .ans-item {
@@ -109,6 +109,13 @@
         .badge-good { background: #dcfce7; color: #166534; }
         .badge-ok  { background: #fef3c7; color: #b45309; }
         .badge-low { background: #fee2e2; color: #dc2626; }
+        .passage-group {
+            margin-bottom: 16px;
+        }
+        .passage-group strong {
+            color: #2c5282;
+            font-size: 15px;
+        }
         .nav-bar {
             display: flex;
             justify-content: space-between;
@@ -136,15 +143,6 @@
         .home-btn { background: #e0e7ff; border-color: #a5b4fc; color: #3730a3; }
         .export-btn { background: #dbeafe; border-color: #93c5fd; color: #1e40af; }
         .clear-btn { background: #fff0f0; border-color: #fecaca; color: #dc2626; }
-        .two-col {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
-        @media (max-width: 768px) {
-            .two-col { grid-template-columns: 1fr; }
-            .answers-grid { grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); }
-        }
     </style>
 </head>
 <body>
@@ -160,26 +158,25 @@
     <!-- ========== LISTENING ========== -->
     <div class="section-block">
         <h2 class="section-title">🎧 LISTENING (Questions 1–40)</h2>
-        <div class="answers-grid" id="listeningGrid">
-            <!-- Loaded by JS -->
-        </div>
+        <div class="answers-grid" id="listeningGrid"></div>
     </div>
 
     <!-- ========== READING ========== -->
     <div class="section-block">
-        <h2 class="section-title">📖 READING (Questions 1–40)</h2>
-        <div class="two-col">
-            <div>
-                <strong>Passage 1</strong>
-                <div class="answers-grid" id="reading1Grid"></div>
-            </div>
-            <div>
-                <strong>Passage 2</strong>
-                <div class="answers-grid" id="reading2Grid"></div>
-            </div>
+        <h2 class="section-title">📖 READING</h2>
+
+        <div class="passage-group">
+            <strong>Passage 1 — Questions 1–13</strong>
+            <div class="answers-grid" id="reading1Grid"></div>
         </div>
-        <div style="margin-top:12px;">
-            <strong>Passage 3</strong>
+
+        <div class="passage-group">
+            <strong>Passage 2 — Questions 14–26</strong>
+            <div class="answers-grid" id="reading2Grid"></div>
+        </div>
+
+        <div class="passage-group">
+            <strong>Passage 3 — Questions 27–40</strong>
             <div class="answers-grid" id="reading3Grid"></div>
         </div>
     </div>
@@ -256,10 +253,10 @@ window.onload = function() {
     // --- Listening 1–40 ---
     makeGrid('listeningGrid', 1, 40);
 
-    // --- Reading ---
-    makeGrid('reading1Grid', 13, 22);
-    makeGrid('reading2Grid', 23, 26);
-    makeGrid('reading3Grid', 27, 40);
+    // --- Reading — CORRECTED RANGES ---
+    makeGrid('reading1Grid', 1, 13);     // ✅ Passage 1: Q1–13
+    makeGrid('reading2Grid', 14, 26);    // ✅ Passage 2: Q14–26
+    makeGrid('reading3Grid', 27, 40);    // ✅ Passage 3: Q27–40
 
     // --- Writing Task 1 ---
     const t1 = localStorage.getItem('task1Input') || '';
@@ -278,7 +275,7 @@ window.onload = function() {
 function exportAll() {
     let output = 'IELTS FULL TEST — ALL ANSWERS REVIEW\n' + '='.repeat(55) + '\n\n';
 
-    output += '🎧 LISTENING ANSWERS\n';
+    output += '🎧 LISTENING ANSWERS (Q1–40)\n';
     output += '-'.repeat(30) + '\n';
     for (let q = 1; q <= 40; q++) {
         const val = loadAnswer(q) || '—';
@@ -287,7 +284,18 @@ function exportAll() {
 
     output += '\n📖 READING ANSWERS\n';
     output += '-'.repeat(30) + '\n';
-    for (let q = 13; q <= 40; q++) {
+    output += '\n[Passage 1 — Q1–13]\n';
+    for (let q = 1; q <= 13; q++) {
+        const val = loadAnswer(q) || '—';
+        output += `${String(q).padStart(2,' ').padEnd(4,' ')} ${val}\n`;
+    }
+    output += '\n[Passage 2 — Q14–26]\n';
+    for (let q = 14; q <= 26; q++) {
+        const val = loadAnswer(q) || '—';
+        output += `${String(q).padStart(2,' ').padEnd(4,' ')} ${val}\n`;
+    }
+    output += '\n[Passage 3 — Q27–40]\n';
+    for (let q = 27; q <= 40; q++) {
         const val = loadAnswer(q) || '—';
         output += `${String(q).padStart(2,' ').padEnd(4,' ')} ${val}\n`;
     }
@@ -313,9 +321,9 @@ function exportAll() {
 // === Clear ALL answers & restart ===
 function clearAll() {
     if (!confirm('⚠️ This will CLEAR EVERYTHING — Listening, Reading, AND Writing answers.\n\nThis cannot be undone. Continue?')) return;
-    // Clear Reading answers
+    // Clear ALL answers Q1–40
     for (let q = 1; q <= 40; q++) localStorage.removeItem(`${LS_KEY}_q${q}`);
-    // Clear flags
+    // Clear progress flags
     ['reading-passage1','reading-passage2','reading-passage3'].forEach(p=>{
         for(let q=1;q<=40;q++) localStorage.removeItem(`${p}_flag_${q}`);
     });
