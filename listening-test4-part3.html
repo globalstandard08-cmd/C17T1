@@ -87,12 +87,6 @@
         .question-block {
             margin-bottom: 14px;
         }
-        .q-title {
-            font-weight: bold;
-            font-size: 15px;
-            margin: 10px 0 6px;
-            color: #1f3a5f;
-        }
         .q-line {
             margin-bottom: 6px;
             font-size: 15px;
@@ -129,7 +123,7 @@
             border-color: #1f3a5f;
             background: #e6f0ff;
         }
-        /* Options styling */
+        /* Options styling Q21-26 */
         .options {
             margin: 4px 0 4px 40px;
         }
@@ -167,7 +161,7 @@
             background-color: #1f3a5f;
             color: #fff;
         }
-        /* Matching Table (Q27-30) */
+        /* Matching Box Q27-30 — TYPE letter directly */
         .match-table {
             width: 100%;
             border-collapse: collapse;
@@ -189,26 +183,23 @@
             text-align: center;
             width: 50px;
         }
-        .match-box-td {
-            width: 50px;
+        .match-input-td {
+            width: 60px;
             text-align: center;
         }
-        .match-box {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 32px;
-            height: 28px;
-            border: 2px solid #ccc;
+        .match-input {
+            width: 42px;
+            height: 34px;
+            border: 2px solid #bbb;
             border-radius: 4px;
+            font-size: 18px;
             font-weight: bold;
-            font-size: 16px;
-            color: #1f3a5f;
-            background: #fff;
+            text-align: center;
+            text-transform: uppercase;
+            outline: none;
             transition: all 0.2s;
-            cursor: pointer;
         }
-        .match-box.filled {
+        .match-input:focus {
             border-color: #1f3a5f;
             background: #e6f0ff;
         }
@@ -217,10 +208,11 @@
             border: 1px solid #ddd;
             border-radius: 5px;
             padding: 10px 15px;
-            margin: 8px 0;
+            margin: 8px 0 15px;
         }
-        .options-list .option {
+        .options-list div {
             margin-bottom: 4px;
+            font-size: 15px;
         }
         /* Highlight style */
         .user-highlight {
@@ -415,7 +407,7 @@
             <h2>Section 3 – Questions 21–30</h2>
             <h2>Work experience for veterinary science students</h2>
 
-            <!-- Q21-26: Single Answer A/B/C -->
+            <!-- Q21-26: Single Answer A/B/C with Tick Boxes -->
             <div class="instruction">
                 <strong>Questions 21–26</strong><br>
                 Choose the correct letter, <strong>A, B or C</strong>.
@@ -506,7 +498,7 @@
                 </div>
             </div>
 
-            <!-- Q27-30: Matching A-F -->
+            <!-- Q27-30: Matching — TYPE letter directly into box -->
             <div class="instruction">
                 <strong>Questions 27–30</strong><br>
                 What opinion do the students give about each of the following modules on their veterinary science course?<br>
@@ -515,40 +507,48 @@
 
             <div class="options-list">
                 <div style="font-weight:bold; margin-bottom:6px;">Opinions</div>
-                <div class="option" data-match="A"><span class="tick-box">✓</span> A Tim found this easier than expected.</div>
-                <div class="option" data-match="B"><span class="tick-box">✓</span> B Tim thought this was not very clearly organised.</div>
-                <div class="option" data-match="C"><span class="tick-box">✓</span> C Diana may do some further study on this.</div>
-                <div class="option" data-match="D"><span class="tick-box">✓</span> D They both found the reading required for this was difficult.</div>
-                <div class="option" data-match="E"><span class="tick-box">✓</span> E Tim was shocked at something he learned on this module.</div>
-                <div class="option" data-match="F"><span class="tick-box">✓</span> F They were both surprised how little is known about some aspects of this.</div>
+                <div><strong>A</strong> &nbsp; Tim found this easier than expected.</div>
+                <div><strong>B</strong> &nbsp; Tim thought this was not very clearly organised.</div>
+                <div><strong>C</strong> &nbsp; Diana may do some further study on this.</div>
+                <div><strong>D</strong> &nbsp; They both found the reading required for this was difficult.</div>
+                <div><strong>E</strong> &nbsp; Tim was shocked at something he learned on this module.</div>
+                <div><strong>F</strong> &nbsp; They were both surprised how little is known about some aspects of this.</div>
             </div>
 
             <table class="match-table">
                 <thead>
                     <tr>
-                        <th colspan="2">Modules on Veterinary Science course</th>
+                        <th colspan="3">Modules on Veterinary Science course</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td class="match-qnum">27</td>
                         <td>Medical terminology</td>
-                        <td class="match-box-td"><div class="match-box" id="ans-box-27" data-q="27"></div></td>
+                        <td class="match-input-td">
+                            <input type="text" class="match-input" id="ans-box-27" data-q="27" maxlength="1" placeholder="">
+                        </td>
                     </tr>
                     <tr>
                         <td class="match-qnum">28</td>
                         <td>Diet and nutrition</td>
-                        <td class="match-box-td"><div class="match-box" id="ans-box-28" data-q="28"></div></td>
+                        <td class="match-input-td">
+                            <input type="text" class="match-input" id="ans-box-28" data-q="28" maxlength="1" placeholder="">
+                        </td>
                     </tr>
                     <tr>
                         <td class="match-qnum">29</td>
                         <td>Animal disease</td>
-                        <td class="match-box-td"><div class="match-box" id="ans-box-29" data-q="29"></div></td>
+                        <td class="match-input-td">
+                            <input type="text" class="match-input" id="ans-box-29" data-q="29" maxlength="1" placeholder="">
+                        </td>
                     </tr>
                     <tr>
                         <td class="match-qnum">30</td>
                         <td>Wildlife medication</td>
-                        <td class="match-box-td"><div class="match-box" id="ans-box-30" data-q="30"></div></td>
+                        <td class="match-input-td">
+                            <input type="text" class="match-input" id="ans-box-30" data-q="30" maxlength="1" placeholder="">
+                        </td>
                     </tr>
                 </tbody>
             </table>
@@ -618,8 +618,8 @@
         const LISTENING_STORAGE_KEY = 'Listening_Test';
 
         document.addEventListener('DOMContentLoaded', function() {
-            // Load saved answers Q21-30
-            for (let i = 21; i <= 30; i++) {
+            // Load saved answers Q21-26 (tick box style)
+            for (let i = 21; i <= 26; i++) {
                 const box = document.getElementById('ans-box-' + i);
                 if (!box) continue;
                 const savedValue = localStorage.getItem(LISTENING_STORAGE_KEY + '_q' + i);
@@ -631,21 +631,33 @@
                 }
             }
 
-            // --- Q21-26 Single Choice (A/B/C) ---
+            // Load saved answers Q27-30 (typing boxes)
+            for (let i = 27; i <= 30; i++) {
+                const input = document.getElementById('ans-box-' + i);
+                if (!input) continue;
+                const savedValue = localStorage.getItem(LISTENING_STORAGE_KEY + '_q' + i);
+                if (savedValue) {
+                    input.value = savedValue.toUpperCase();
+                    markAnswered(i);
+                }
+            }
+
+            // --- Q21-26: Clickable Tick Boxes ---
             document.querySelectorAll('.option[data-q]').forEach(opt => {
                 opt.addEventListener('click', function() {
                     const qNum = parseInt(this.dataset.q);
                     const val = this.dataset.val;
                     const box = document.getElementById('ans-box-' + qNum);
 
-                    // If same selected → deselect
                     if (box.textContent === val) {
+                        // Deselect
                         box.textContent = '';
                         box.classList.remove('filled');
                         unhighlightAll(qNum);
                         localStorage.removeItem(LISTENING_STORAGE_KEY + '_q' + qNum);
                         unmarkAnswered(qNum);
                     } else {
+                        // Select
                         box.textContent = val;
                         box.classList.add('filled');
                         unhighlightAll(qNum);
@@ -656,57 +668,26 @@
                 });
             });
 
-            // --- Q27-30 Matching (A-F) ---
-            let selectedMatch = null;
-            document.querySelectorAll('.option[data-match]').forEach(opt => {
-                opt.addEventListener('click', function() {
-                    const letter = this.dataset.match;
+            // --- Q27-30: TYPE letter directly into box ---
+            for (let i = 27; i <= 30; i++) {
+                const input = document.getElementById('ans-box-' + i);
+                if (!input) continue;
 
-                    // If already selected → unselect
-                    if (this.classList.contains('selected')) {
-                        this.classList.remove('selected');
-                        selectedMatch = null;
-                        return;
-                    }
+                input.addEventListener('input', function() {
+                    // Keep only A-F, uppercase, single letter
+                    let letter = this.value.toUpperCase().replace(/[^A-F]/g, '').substring(0, 1);
+                    this.value = letter;
 
-                    // Select this letter
-                    document.querySelectorAll('.option[data-match]').forEach(o => o.classList.remove('selected'));
-                    this.classList.add('selected');
-                    selectedMatch = letter;
-                });
-            });
-
-            // Click answer box to assign selected letter
-            document.querySelectorAll('.match-box').forEach(box => {
-                box.addEventListener('click', function() {
                     const qNum = parseInt(this.dataset.q);
-                    const currentVal = this.textContent;
-
-                    // If no letter selected yet → clear
-                    if (!selectedMatch) {
-                        if (currentVal) {
-                            this.textContent = '';
-                            this.classList.remove('filled');
-                            localStorage.removeItem(LISTENING_STORAGE_KEY + '_q' + qNum);
-                            unmarkAnswered(qNum);
-                        }
-                        return;
-                    }
-
-                    // If clicking same letter → remove
-                    if (currentVal === selectedMatch) {
-                        this.textContent = '';
-                        this.classList.remove('filled');
+                    if (letter) {
+                        localStorage.setItem(LISTENING_STORAGE_KEY + '_q' + qNum, letter);
+                        markAnswered(qNum);
+                    } else {
                         localStorage.removeItem(LISTENING_STORAGE_KEY + '_q' + qNum);
                         unmarkAnswered(qNum);
-                    } else {
-                        this.textContent = selectedMatch;
-                        this.classList.add('filled');
-                        localStorage.setItem(LISTENING_STORAGE_KEY + '_q' + qNum, selectedMatch);
-                        markAnswered(qNum);
                     }
                 });
-            });
+            }
 
             // --- Right-click Highlight & Note System ---
             const highlightArea = document.getElementById('highlightArea');
@@ -793,7 +774,11 @@
             for (let i = 21; i <= 30; i++) {
                 localStorage.removeItem(LISTENING_STORAGE_KEY + '_q' + i);
                 const box = document.getElementById('ans-box-' + i);
-                if (box) { box.textContent = ''; box.classList.remove('filled'); }
+                if (box) {
+                    if (box.tagName === 'INPUT') box.value = '';
+                    else box.textContent = '';
+                    box.classList.remove('filled');
+                }
                 unmarkAnswered(i);
             }
             document.querySelectorAll('.option.selected').forEach(o => o.classList.remove('selected'));
