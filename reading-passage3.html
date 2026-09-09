@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reading Test — Passage 3</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        }
+        body {
+            background-color: #f0f4f8;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+        .logo-container {
+            width: 100%;
+            background: #ffffff;
+            border-bottom: 2px solid #1f3a5f;
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 6px rgba(31, 58, 95, 0.12);
+        }
+        .logo {
+            width: 35%;
+            max-width: 320px;
+            height: auto;
+            display: block;
+        }
+        .main-wrapper {
+            display: flex;
+            gap: 18px;
+            padding: 0 18px 12px;
+            height: calc(100vh - 120px);
+        }
+        .passage-column, .questions-column {
+            flex: 1;
+            background: #ffffff;
+            border-radius: 10px;
+            border: 1px solid #c5d2e3;
+            padding: 18px;
+            overflow-y: auto;
+            box-shadow: 0 2px 8px rgba(31, 58, 95, 0.07);
+            position: relative;
+        }
+        h1 {
+            color: #1f3a5f;
+            font-size: 19px;
+            margin-bottom: 14px;
+            text-align: center;
+        }
+        h2 {
+            color: #1f3a5f;
+            font-size: 17px;
+            margin: 18px 0 10px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .passage-text p {
+            margin-bottom: 12px;
+            font-size: 15px;
+            line-height: 1.8;
+            text-align: justify;
+        }
+        .passage-text strong {
+            color: #1f3a5f;
+        }
+        .highlight {
+            background-color: #ffd700;
+            padding: 2px 4px;
+            border-radius: 2px;
+            cursor: pointer;
+            color: #000;
+            display: inline;
+        }
+        .instruction {
+            background-color: #f8fbfe;
+            border-left: 3px solid #1f3a5f;
+            padding: 10px 14px;
+            margin-bottom: 16px;
+            font-size: 14px;
+            color: #333;
+        }
+        .question-block {
+            margin-bottom: 16px;
+            scroll-margin-top: 15px;
+        }
+        .question-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+        .flag-btn {
+            font-size: 17px;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.2s;
+            user-select: none;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+        .flag-btn.flagged {
+            color: #fd7e14;
+        }
+        .question-block p {
+            font-weight: 500;
+            margin-bottom: 8px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .answer-input {
+            width: 100%;
+            max-width: 220px;
+            padding: 4px 6px;
+            border: 1px solid #c5d2e3;
+            border-radius: 4px;
+            font-size: 14px;
+            background: #f0f4f8;
+            text-transform: uppercase;
+        }
+        /* Summary box */
+        .summary-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 14px 18px;
+            margin: 10px 0 16px;
+        }
+        .summary-box p {
+            font-weight: normal;
+            margin-bottom: 10px;
+            line-height: 1.8;
+        }
+        .summary-q {
+            display: inline-block;
+            min-width: 28px;
+            font-weight: bold;
+            color: #1f3a5f;
+        }
+        .summary-input {
+            width: 60px;
+            border: none;
+            border-bottom: 1px dashed #333;
+            padding: 2px 4px;
+            margin: 0 4px;
+            font-size: 14px;
+            text-align: center;
+            background: transparent;
+            outline: none;
+            text-transform: uppercase;
+        }
+        .summary-input:focus {
+            border-bottom: 2px solid #1f3a5f;
+            background: #f0f5ff;
+            border-radius: 3px 3px 0 0;
+        }
+        /* Option list A-J vertical */
+        .option-list-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin: 8px 0 14px;
+        }
+        .option-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            margin: 4px 0;
+            cursor: pointer;
+        }
+        .option-row input[type="radio"] {
+            margin-top: 3px;
+            cursor: pointer;
+        }
+        .option-row label {
+            cursor: pointer;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        /* YES/NO/NOT GIVEN */
+        .yn-choices {
+            display: flex;
+            gap: 16px;
+            margin: 6px 0 10px;
+        }
+        .yn-choice {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            cursor: pointer;
+        }
+        .yn-choice input {
+            cursor: pointer;
+        }
+        /* Single Multiple Choice A/B/C/D */
+        .mc-option {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            margin: 6px 0;
+            cursor: pointer;
+        }
+        .mc-option input[type="radio"] {
+            margin-top: 3px;
+            cursor: pointer;
+        }
+        .mc-option label {
+            cursor: pointer;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .context-menu {
+            position: absolute;
+            background: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            z-index: 9999;
+            display: none;
+            min-width: 140px;
+        }
+        .context-menu div {
+            padding: 8px 11px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        .context-menu div:hover {
+            background: #f0f4f8;
+        }
+        .sticky-note {
+            position: absolute;
+            width: 160px;
+            min-height: 60px;
+            background: #fff380;
+            border: 1px solid #e6c200;
+            border-radius: 4px;
+            padding: 6px;
+            box-shadow: 2px 2px 7px rgba(0,0,0,0.15);
+            z-index: 9998;
+            font-size: 12px;
+            user-select: none;
+        }
+        .note-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            margin-bottom: 4px;
+            font-size: 11px;
+            color: #886a00;
+            cursor: move;
+        }
+        .note-close {
+            cursor: pointer;
+            font-weight: bold;
+            color: #886a00;
+            user-select: none;
+        }
+        .note-textarea {
+            width: 100%;
+            height: 44px;
+            border: none;
+            background: transparent;
+            resize: none;
+            outline: none;
+            font-family: inherit;
+            font-size: 12px;
+            user-select: text;
+        }
+        .bottom-container {
+            margin: 10px 18px 20px;
+            padding: 10px 12px;
+            background: #ffffff;
+            border-radius: 8px;
+            border: 1px solid #c5d2e3;
+            box-shadow: 0 -2px 5px rgba(31, 58, 95, 0.07);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .question-nav {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 5px;
+        }
+        .nav-label {
+            font-weight: 600;
+            color: #1f3a5f;
+            font-size: 13px;
+            margin-right: 4px;
+        }
+        .q-indicator {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 3px;
+            border: 1px solid #ddd;
+            background: #e5e7eb !important;
+            color: #333;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .q-indicator:hover {
+            opacity: 0.9;
+        }
+        .q-indicator.answered {
+            background: #10b981 !important;
+            color: white !important;
+            border-color: #10b981 !important;
+        }
+        .q-indicator.flagged {
+            background: #fd7e14 !important;
+            color: white !important;
+            border-color: #fd7e14 !important;
+        }
+        .q-indicator.answered.flagged {
+            background: #fd7e14 !important;
+            border-color: #fd7e14 !important;
+        }
+        .q-indicator.current {
+            border: 2px solid #1f3a5f !important;
+        }
+        .bottom-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .clear-answers {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 13px;
+            background: #6b7280;
+            color: white;
+        }
+        .clear-answers:hover {
+            background: #4b5563;
+        }
+        .nav-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-left: auto;
+        }
+        .back-btn, .next-btn {
+            padding: 6px 12px;
+            background: #f0f4f8;
+            color: #1f3a5f;
+            text-decoration: none;
+            border-radius: 6px;
+            border: 1px solid #c5d2e3;
+            font-weight: 500;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        .back-btn:hover, .next-btn:hover {
+            background: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="logo-container">
+        <img src="ielts-logo.png" alt="IELTS Logo" class="logo">
+    </div>
+    <div class="context-menu" id="contextMenu">
+        <div id="menuHighlight">✅ Highlight</div>
+        <div id="menuRemove">❌ Remove Highlight</div>
+        <div id="menuNote">📝 Add Note</div>
+    </div>
+    <div class="main-wrapper">
+        <div class="passage-column" id="passageArea">
+            <h1>Reading Passage 3 — To catch a king</h1>
+            <div class="passage-text">
+                <p><strong>You should spend about 20 minutes on Questions 27–40, which are based on Reading Passage 3 below.</strong></p>
+                <h2 style="text-align:center; border:none;">To catch a king</h2>
+                <p style="text-align:center; font-style:italic;">Anna Keay reviews Charles Spencer's book about the hunt for King Charles II during the English Civil War of the seventeenth century</p>
+
+                <p>Charles Spencer's latest book, <em>To catch a King</em>, tells us the story of the hunt for King Charles II in the six weeks after his resounding defeat at the Battle of Worcester in September 1651. And what a story it is. After his father was executed by the Parliamentarians in 1649, the young Charles II sacrificed one of the very principles his father had died for and did a deal with the Scots, thereby accepting Presbyterianism* as the national religion in return for being crowned King of Scots. His arrival in Edinburgh prompted the English Parliamentary army to invade Scotland in a pre-emptive strike. This was followed by a Scottish invasion of England. The two sides finally faced one another at Worcester in the west of England in 1651. After being comprehensively defeated on the meadows outside the city by the Parliamentarian army, the 21-year-old king found himself the subject of a national manhunt, with a huge sum offered for his capture. Over the following six weeks he managed, through a series of heart-poundingly close escapes, to evade the Parliamentarians before seeking refuge in France. For the next nine years, the penniless and defeated Charles wandered around Europe with only a small group of loyal supporters.</p>
+
+                <p>Years later, after his restoration as king, the 50-year-old Charles II requested a meeting with the writer and diarist Samuel Pepys. His intention when asking Pepys to commit his story to paper was to ensure that this most extraordinary episode was never forgotten. Over three two-hour sittings, the king related to him in great detail his personal recollections of the six weeks he had spent as a fugitive. As the king and secretary settled down (a scene that is surely a gift for a future scriptwriter), Charles commenced his story: 'After the battle I was so absolutely lost as to be beyond hope of recovery, I began to think of the best way of saving myself.'</p>
+
+                <p>One of the joys of Spencer's book, a result not least of its use of Charles II's own narrative as well as those of his supporters, is just how close the reader gets to the action. The day-by-day retelling of the fugitives' doings provides delicious details: the cutting of the king's long hair with agricultural shears, the use of walnut leaves to dye his pale skin, and the day Charles spent lying up a branch of the great oak tree in Boscobel Wood as the Parliamentary soldiers scoured the forest floor below. Spencer draws out both the humour — such as the preposterous refusal of Charles's friend Henry Wilmot to adopt disguise on the grounds that it was beneath his dignity — and the emotional tension when the secret of the king's presence was cautiously revealed to his supporters.</p>
+
+                <p>Charles's adventures after losing the Battle of Worcester hide the uncomfortable truth that whilst almost everyone in England had been appalled by the execution of his father, they had not welcomed the arrival of his son with the Scots army, but had instead firmly bolted their doors. This was partly because he rode at the head of what looked like a foreign invasion force and partly because, after almost a decade of civil war, people were desperate to avoid it beginning again. This makes it all the more interesting that Charles II himself loved the story so much ever after. As well as telling it to anyone who would listen, causing eye-rolling among courtiers, he set in train a series of initiatives to memorialise it. There was to be a new order of chivalry, the Knights of the Royal Oak. A series of enormous oil paintings depicting the episode were produced, including a two-metre-wide canvas of Boscobel Wood and a set of six similarly enormous paintings of the king on the run. In 1660, Charles II commissioned the artist John Michael Wright to paint a flying squadron of cherubs* carrying an oak tree to the heavens on the ceiling of his bedchamber. It is hard to imagine many other kings marking the lowest point in their life so enthusiastically, or indeed pulling off such an escape in the first place.</p>
+
+                <p>Charles Spencer is the perfect person to pass the story on to a new generation. His pacey, readable prose steers deftly clear of modern idioms and elegantly brings to life the details of the great tale. He has even-handed sympathy for both the fugitive king and the fierce republican regime that hunted him, and he has succeeded in his desire to explore more of the background of the story than previous books on the subject have done. Indeed, the opening third of the book is about how Charles II found himself at Worcester in the first place, which for some will be reason alone to read <em>To catch a King</em>.</p>
+
+                <p>The tantalising question left, in the end, is that of what it all meant. Would Charles II have been a different king had these six weeks never happened? The days and nights spent in hiding must have affected him in some way. Did the need to assume disguises, to survive on wit and charm alone, to use trickery and subterfuge to escape from tight corners help form him? This is the one area where the book doesn't quite hit the mark. Instead its depiction of Charles II in his final years as an ineffective, pleasure-loving monarch doesn't do justice to the man (neither is it accurate), or to the complexity of his character. But this one niggle aside, <em>To catch a King</em> is an excellent read, and those who come to it knowing little of the famous tale will find they have a treat in store.</p>
+            </div>
+        </div>
+        <div class="questions-column" id="questionsArea">
+            <div class="questions-section">
+                <h2>Questions 27–31</h2>
+                <div class="instruction">
+                    Complete the summary using the list of phrases, A–J, below.<br>
+                    Write the correct letter, A–J, in boxes 27–31 on your answer sheet.
+                </div>
+                <div class="summary-box">
+                    <p><strong>The story behind the hunt for Charles II</strong></p>
+                    <p>Charles II's father was executed by the Parliamentarian forces in 1649. Charles II then formed a <span class="summary-q">27</span><input type="text" class="summary-input" id="q27_input" placeholder="A–J"> with the Scots, and in order to become King of Scots, he abandoned an important <span class="summary-q">28</span><input type="text" class="summary-input" id="q28_input" placeholder="A–J"> that was held by his father and had contributed to his father's death. The opposing sides then met outside Worcester in 1651. The battle led to a <span class="summary-q">29</span><input type="text" class="summary-input" id="q29_input" placeholder="A–J"> for the Parliamentarians and Charles had to flee for his life. A <span class="summary-q">30</span><input type="text" class="summary-input" id="q30_input" placeholder="A–J"> was offered for Charles's capture, but after six weeks spent in hiding, he eventually managed to reach the <span class="summary-q">31</span><input type="text" class="summary-input" id="q31_input" placeholder="A–J"> of continental Europe.</p>
+                </div>
+                <div class="option-list-box">
+                    <div class="option-row"><label><strong>A</strong> military innovation</label></div>
+                    <div class="option-row"><label><strong>B</strong> large reward</label></div>
+                    <div class="option-row"><label><strong>C</strong> widespread conspiracy</label></div>
+                    <div class="option-row"><label><strong>D</strong> relative safety</label></div>
+                    <div class="option-row"><label><strong>E</strong> new government</label></div>
+                    <div class="option-row"><label><strong>F</strong> decisive victory</label></div>
+                    <div class="option-row"><label><strong>G</strong> political debate</label></div>
+                    <div class="option-row"><label><strong>H</strong> strategic alliance</label></div>
+                    <div class="option-row"><label><strong>I</strong> popular solution</label></div>
+                    <div class="option-row"><label><strong>J</strong> religious conviction</label></div>
+                </div>
+
+                <h2>Questions 32–35</h2>
+                <div class="instruction">
+                    Do the following statements agree with the claims of the writer in Reading Passage 3?<br>
+                    In boxes 32–35 on your answer sheet, write:<br>
+                    <strong>YES</strong> &nbsp; if the statement agrees with the claims of the writer<br>
+                    <strong>NO</strong> &nbsp; if the statement contradicts the claims of the writer<br>
+                    <strong>NOT GIVEN</strong> &nbsp; if it is impossible to say what the writer thinks about this
+                </div>
+
+                <div class="question-block" id="q32">
+                    <div class="question-header">
+                        <span class="flag-btn" onclick="toggleFlag(32)" id="flag32">🚩</span>
+                        <p><strong>32.</strong> Charles chose Pepys for the task because he considered him to be trustworthy.</p>
+                    </div>
+                    <div class="yn-choices">
+                        <label class="yn-choice"><input type="radio" name="q32" value="YES" onchange="saveAnswers()"> YES</label>
+                        <label class="yn-choice"><input type="radio" name="q32" value="NO" onchange="saveAnswers()"> NO</label>
+                        <label class="yn-choice"><input type="radio" name="q32" value="NOT GIVEN" onchange="saveAnswers()"> NOT GIVEN</label>
+                    </div>
+                </div>
+                <div class="question-block" id="q33">
+                    <div class="question-header">
+                        <span class="flag-btn" onclick="toggleFlag(33)" id="flag33">🚩</span>
+                        <p><strong>33.</strong> Charles's personal recollection of the escape lacked sufficient detail.</p>
+                    </div>
+                    <div class="yn-choices">
+                        <label class="yn-choice"><input type="radio" name="q33" value="YES" onchange="saveAnswers()"> YES</label>
+                        <label class="yn-choice"><input type="radio" name="q33" value="NO" onchange="saveAnswers()"> NO</label>
+                        <label class="yn-choice"><input type="radio" name="q33" value="NOT GIVEN" onchange="saveAnswers()"> NOT GIVEN</label>
+                    </div>
+                </div>
+                <div class="question-block" id="q34">
+                    <div class="question-header">
+                        <span class="flag-btn" onclick="toggleFlag(34)" id="flag34">🚩</span>
+                        <p><strong>34.</strong> Charles indicated to Pepys that he had planned his escape before the battle.</p>
+                    </div>
+                    <div class="yn-choices">
+                        <label class="yn-choice"><input type="radio" name="q34" value="YES" onchange="saveAnswers()"> YES</label>
+                        <label class="yn-choice"><input type="radio" name="q34" value="NO" onchange="saveAnswers()"> NO</label>
+                        <label class="yn-choice"><input type="radio" name="q34" value="NOT GIVEN" onchange="saveAnswers()"> NOT GIVEN</label>
+                    </div>
+                </div>
+                <div class="question-block" id="q35">
+                    <div class="question-header">
+                        <span class="flag-btn" onclick="toggleFlag(35)" id="flag35">🚩</span>
+                        <p><strong>35.</strong> The inclusion of Charles's account is a positive aspect of the book.</p>
+                    </div>
+                    <div class="yn-choices">
+                        <label class="yn-choice"><input type="radio" name="q35" value="YES" onchange="saveAnswers()"> YES</label>
+                        <label class="yn-choice"><input type="radio" name="q35" value="NO" onchange="saveAnswers()"> NO</label>
+                        <label class="yn-choice"><input type="radio" name="q35" value="NOT GIVEN" onchange="saveAnswers()"> NOT GIVEN</label>
+                    </div>
+                </div>
+
+                <h2>Questions 36–40</h2>
+                <div class="instruction">
+                    Choose the correct letter, A, B, C or D.<br>
+                    Write the correct letter in boxes 36–40 on your answer sheet.
+                </div>
+
+                <div class="question-block" id="q36">
+                    <div class="question-header">
+                        <span class="flag-btn" onclick="toggleFlag(36)" id="flag36">🚩</span>
+                        <p><strong>36.</strong> What is the reviewer's main purpose in the first paragraph?</p>
+                    </div>
+                    <div class="mc-option">
+                        <input type="radio" name="q36" value="A" id="q36_A" onchange="saveAnswers()">
+                        <label for="q36_A">A to describe what happened during the Battle of Worcester</label>
+                    </div>
+                    <div class="mc-option">
+                        <input type="radio" name="q36" value="B" id="q36_B" onchange="saveAnswers()">
+                        <label for="q36_B">B to give an account of the circumstances leading to Charles II's escape</label>
+                    </div>
+                    <div class="mc-option">
+                        <input type="radio" name="q36" value="C" id="q36_C" onchange="saveAnswers()">
+                        <label for="q36_C">C to provide details of the Parliamentarians' political views</label>
+                    </div>
+                    <div class="mc-option">
+                        <input type="radio" name="q36" value="D" id="q36_D" onchange="saveAnswers()">
+                        <label for="q36_D">D to compare Charles II's beliefs with those of his father</label>
+                    </div>
+                </div>
+
+                <div class="question-block" id="q37">
+                    <div class="question-header">
+                        <span class="flag-btn" onclick="toggleFlag(37)" id="flag37">🚩</span>
+                        <p><strong>37.</strong> Why does the reviewer include examples of the fugitives' behaviour in the third paragraph?</p>
+                    </div>
+                    <div class="mc-option">
+                        <input type="radio" name="q37" value="A" id="q37_A" onchange="saveAnswers()">
+                        <label for="q37_A">A to explain how close Charles II came to losing his life</label>
+                    </div>
+                    <div class="mc-option">
+                        <input type="radio" name="q37" value="B" id="q37_B" onchange="saveAnswers()">
+                        <label for="q37_B">B to suggest that Charles II's supporters were badly prepared</label>
+                    </div>
+                    <div class="mc-option">
+                        <input type="radio" name="q37" value="C" id="q37_C" onchange="saveAnswers()">
+                        <label for="q37_C">C to illustrate how the events of the six weeks are brought to life</label>
+                    </div>
+                    <div class="mc-option">
+                        <input type="radio" name="q37" value="D" id="q37_D" onchange="saveAnswers()">
+                        <label for="q37_D">D to argue that certain aspects are not as well known as they should be</label>
+                    </div>
+                </div>
+
+                <div class="question-block" id="q38">
+                    <div class="question-header">
+                        <span class="flag-btn" onclick="toggleFlag(38)" id="flag38">🚩</span>
+                        <p><strong>38.</strong> What point does the reviewer make about Charles II in the fourth paragraph?</p>
+                    </div>
+                    <div class="mc-option">
+                        <input type="radio" name="q38" value="A" id="q38_A" onchange="saveAnswers()">
+                        <label for="q38_A">A He chose to celebrate what was essentially a defeat.</label>
+                    </div>
+                    <div class="mc-option">
+                        <input type="radio" name="q38" value="B" id="q38_B" onchange="saveAnswers()">
+                        <label for="q38_B">B He misunderstood the motives of his opponents.</label>
+                    </div>
+                    <div class="mc-option">
+                        <input type="radio" name="q38" value="C" id="q38_C" onchange="saveAnswers()">
+                        <label for="q38_C">C He aimed to restore people's faith in the monarchy.</label>
+                    </div>
+                    <div class="mc-option">
+                        <input type="radio" name="q38" value="D" id="q38_D" onchange="saveAnswers()">
+                        <label for="q38_D">D He was driven by a desire to be popular.</label>
+                    </div>
+                </div>
+
+                <div class="question-block" id="q39">
+                    <div class="question-header">
+                        <span class="flag-btn" onclick="toggleFlag(39)" id="flag39">🚩</span>
+                        <p><strong>39.</strong> What does the reviewer say about Charles Spencer in the fifth paragraph?</p>
+                    </div>
+                    <div class="mc-option">
+                        <input type="radio" name="q39" value="A" id="q39_A" onchange="saveAnswers()">
+                        <label for="q39_A">A His decision to write the book comes as a surprise.</label>
+                    </div>
+                    <div class="mc-option">
+                        <input type="radio" name="q39" value="B" id="q39_B" onchange="saveAnswers()">
+                        <label for="q39_B">B He takes an unbiased approach to the subject matter.</label>
+                    </div>
+                    <div class="mc-option">
+                        <input type="radio" name="q39" value="C" id="q39_C" onchange="saveAnswers()">
+                        <label for="q39_C">C His descriptions of events would be better if they included more detail.</label>
+                    </div>
+                    <div class="mc-option">
+                        <input type="radio" name="q39" value="D" id="q39_D" onchange="saveAnswers()">
+                        <label for="q39_D">D He chooses language that is suitable for a twenty-first-century audience.</label>
+                    </div>
+                </div>
+
+                <div class="question-block" id="q40">
+                    <div class="question-header">
+                        <span class="flag-btn" onclick="toggleFlag(40)" id="flag40">🚩</span>
+                        <p><strong>40.</strong> When the reviewer says the book 'doesn't quite hit the mark', she is making the point that</p>
+                    </div>
+                    <div class="mc-option">
+                        <input type="radio" name="q40" value="A" id="q40_A" onchange="saveAnswers()">
+                        <label for="q40_A">A it overlooks the impact of events on ordinary people.</label>
+                    </div>
+                    <div class="mc-option">
+                        <input type="radio" name="q40" value="B" id="q40_B" onchange="saveAnswers()">
+                        <label for="q40_B">B it lacks an analysis of prevalent views on monarchy.</label>
+                    </div>
+                    <div class="mc-option">
+                        <input type="radio" name="q40" value="C" id="q40_C" onchange="saveAnswers()">
+                        <label for="q40_C">C it omits any references to the deceit practised by Charles II during his time in hiding.</label>
+                    </div>
+                    <div class="mc-option">
+                        <input type="radio" name="q40" value="D" id="q40_D" onchange="saveAnswers()">
+                        <label for="q40_D">D it fails to address whether Charles II's experiences had a lasting influence on him.</label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="bottom-container">
+        <div class="question-nav" id="questionNav">
+            <span class="nav-label">Questions:</span>
+        </div>
+        <div class="bottom-controls">
+            <div class="action-buttons">
+                <button class="clear-answers" onclick="clearAllAnswers()">🗑️ Clear All Answers</button>
+            </div>
+            <div class="nav-buttons">
+                <a href="reading-passage2.html" class="back-btn">← Previous</a>
+                <a href="answers-review.html" class="next-btn">Finish →</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        const READING_STORAGE_KEY = 'Reading_Test';
+        const passageId = 'reading-passage3';
+        const TOTAL_QUESTIONS = 40;
+        const Q_START = 27;
+        const Q_END = 40;
+        let currentRange = null;
+        let lastNoteId = 0;
+        let dragNote = null;
+        let dragOffsetX = 0;
+        let dragOffsetY = 0;
+
+        // === Save Answers ===
+        function saveAnswers() {
+            // Summary completion Q27-31
+            for (let q = 27; q <= 31; q++) {
+                const el = document.getElementById(`q${q}_input`);
+                if (el) {
+                    let val = el.value.trim().toUpperCase().replace(/[^A-J]/g, '');
+                    el.value = val;
+                    localStorage.setItem(`${READING_STORAGE_KEY}_q${q}`, val);
+                }
+            }
+            // YES/NO/NOT GIVEN Q32-35 & Multiple Choice Q36-40
+            for (let q = 32; q <= 40; q++) {
+                const sel = document.querySelector(`input[name="q${q}"]:checked`);
+                const val = sel ? sel.value : '';
+                localStorage.setItem(`${READING_STORAGE_KEY}_q${q}`, val);
+            }
+            updateStatus();
+        }
+
+        // === Load Answers ===
+        function loadAnswers() {
+            // Summary Q27-31
+            for (let q = 27; q <= 31; q++) {
+                const val = localStorage.getItem(`${READING_STORAGE_KEY}_q${q}`) || '';
+                const el = document.getElementById(`q${q}_input`);
+                if (el) el.value = val;
+            }
+            // Q32-40
+            for (let q = 32; q <= 40; q++) {
+                const val = localStorage.getItem(`${READING_STORAGE_KEY}_q${q}`) || '';
+                document.querySelectorAll(`input[name="q${q}"]`).forEach(radio => {
+                    radio.checked = (radio.value === val);
+                });
+            }
+            // Restore flags
+            for (let q = Q_START; q <= Q_END; q++) {
+                const flagged = localStorage.getItem(`${passageId}_flag_${q}`) === 'true';
+                const flag = document.getElementById('flag'+q);
+                if (flag) flag.classList.toggle('flagged', flagged);
+            }
+            updateStatus();
+        }
+
+        // === Update Status ===
+        function updateStatus() {
+            for (let q = 1; q <= TOTAL_QUESTIONS; q++) {
+                const statBtn = document.getElementById('stat' + q);
+                if (!statBtn) continue;
+                const val = (localStorage.getItem(`${READING_STORAGE_KEY}_q${q}`) || '').trim();
+                const hasAnswer = val.length > 0;
+                const isFlagged = localStorage.getItem(`${passageId}_flag_${q}`) === 'true';
+                statBtn.classList.remove('answered', 'flagged');
+                if (isFlagged) statBtn.classList.add('flagged');
+                else if (hasAnswer) statBtn.classList.add('answered');
+                const flagIcon = document.getElementById('flag' + q);
+                if (flagIcon) flagIcon.classList.toggle('flagged', isFlagged);
+            }
+        }
+
+        // === Flag Toggle ===
+        function toggleFlag(qNum) {
+            const flag = document.getElementById('flag' + qNum);
+            const stat = document.getElementById('stat' + qNum);
+            const isFlagged = flag.classList.toggle('flagged');
+            stat.classList.toggle('flagged', isFlagged);
+            localStorage.setItem(`${passageId}_flag_${qNum}`, isFlagged);
+        }
+
+        // === Clear All ===
+        function clearAllAnswers() {
+            if (!confirm('⚠️ This will clear ALL answers, flags, highlights and notes. Continue?')) return;
+            for (let q = 27; q <= 40; q++) {
+                localStorage.removeItem(`${READING_STORAGE_KEY}_q${q}`);
+                localStorage.removeItem(`${passageId}_flag_${q}`);
+            }
+            document.querySelectorAll('.summary-input').forEach(i => i.value = '');
+            document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+            document.querySelectorAll('.flag-btn').forEach(f => f.classList.remove('flagged'));
+            document.querySelectorAll('.highlight').forEach(s => {
+                const p = s.parentNode;
+                p.replaceChild(document.createTextNode(s.textContent), p);
+                p.normalize();
+            });
+            document.querySelectorAll('.sticky-note').forEach(n => n.remove());
+            localStorage.removeItem(`${passageId}_highlights`);
+            localStorage.removeItem(`${passageId}_notes`);
+            updateStatus();
+        }
+
+        // === Navigation ===
+        function initQuestionNav() {
+            const navContainer = document.getElementById('questionNav');
+            for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+                const btn = document.createElement('div');
+                btn.className = 'q-indicator';
+                btn.textContent = i;
+                btn.id = 'stat' + i;
+                btn.onclick = () => jumpToQuestion(i);
+                navContainer.appendChild(btn);
+            }
+            updateStatus();
+        }
+
+        function jumpToQuestion(qNum) {
+            document.querySelectorAll('.q-indicator').forEach(el => el.classList.remove('current'));
+            document.getElementById('stat'+qNum)?.classList.add('current');
+            document.getElementById('q'+qNum)?.scrollIntoView({behavior:'smooth', block:'start'});
+        }
+
+        // === Highlight & Notes ===
+        function isSelectionValid(sel) {
+            if (!sel || sel.isCollapsed || !sel.toString().trim()) return false;
+            try {
+                const r = sel.getRangeAt(0);
+                const p = r.commonAncestorContainer.nodeType === Node.TEXT_NODE
+                    ? r.commonAncestorContainer.parentElement : r.commonAncestorContainer;
+                const inPassage = document.getElementById('passageArea').contains(p);
+                const inQ = document.getElementById('questionsArea').contains(p);
+                const inInput = p.closest('input,textarea,button,label,.note-close');
+                return (inPassage || inQ) && !inInput;
+            } catch { return false; }
+        }
+
+        const contextMenu = document.getElementById('contextMenu');
+        document.addEventListener('contextmenu', e => {
+            const sel = window.getSelection();
+            if (!isSelectionValid(sel)) { contextMenu.style.display='none'; return; }
+            e.preventDefault();
+            currentRange = sel.getRangeAt(0).cloneRange();
+            const rc = currentRange.getBoundingClientRect();
+            contextMenu.style.left = (rc.left + window.scrollX) + 'px';
+            contextMenu.style.top = (rc.bottom + window.scrollY + 5) + 'px';
+            contextMenu.style.display = 'block';
+        });
+
+        document.addEventListener('click', () => contextMenu.style.display='none');
+
+        document.getElementById('menuHighlight').onclick = () => {
+            if (!currentRange) return;
+            try {
+                const sp = document.createElement('span');
+                sp.className='highlight'; sp.textContent=currentRange.toString();
+                currentRange.deleteContents(); currentRange.insertNode(sp);
+                window.getSelection().removeAllRanges(); currentRange=null;
+                saveHighlights();
+            } catch { alert('Select smaller text.'); }
+        };
+
+        document.getElementById('menuRemove').onclick = () => {
+            if (!currentRange) return;
+            try {
+                const p = (currentRange.startContainer.nodeType===Node.TEXT_NODE
+                    ? currentRange.startContainer.parentElement : currentRange.startContainer)
+                    .closest('.highlight');
+                if (p) { const par=p.parentNode; par.replaceChild(document.createTextNode(p.textContent),p); par.normalize(); }
+            } catch {}
+            window.getSelection().removeAllRanges(); currentRange=null; saveHighlights();
+        };
+
+        document.getElementById('menuNote').onclick = () => {
+            if (!currentRange) return;
+            const rc = currentRange.getBoundingClientRect();
+            const id = 'note_' + (++lastNoteId);
+            const note = document.createElement('div');
+            note.className='sticky-note'; note.id=id;
+            note.innerHTML = `<div class="note-header" onmousedown="startDrag(event,'${id}')">Note <span class="note-close" onclick="closeNote('${id}')">×</span></div><textarea class="note-textarea" placeholder="Type note..."></textarea>`;
+            note.style.left = (rc.right + window.scrollX + 8) + 'px';
+            note.style.top = (rc.top + window.scrollY) + 'px';
+            document.body.appendChild(note);
+            window.getSelection().removeAllRanges(); currentRange=null; saveNotes();
+        };
+
+        window.startDrag = function(e,id) {
+            dragNote=document.getElementById(id);
+            const r=dragNote.getBoundingClientRect();
+            dragOffsetX=e.clientX-r.left; dragOffsetY=e.clientY-r.top;
+            dragNote.style.zIndex='10000'; e.preventDefault();
+        };
+
+        document.addEventListener('mousemove', e=>{
+            if(!dragNote)return;
+            dragNote.style.left=(e.pageX-dragOffsetX)+'px';
+            dragNote.style.top=(e.pageY-dragOffsetY)+'px';
+        });
+
+        document.addEventListener('mouseup',()=>{if(dragNote){dragNote.style.zIndex='9998';dragNote=null;saveNotes();}});
+        window.closeNote = id=>{document.getElementById(id)?.remove();saveNotes();};
+
+        function saveHighlights(){localStorage.setItem(`${passageId}_highlights`,document.getElementById('passageArea').innerHTML);}
+        function loadHighlights(){const h=localStorage.getItem(`${passageId}_highlights`);if(h)document.getElementById('passageArea').innerHTML=h;}
+        function saveNotes(){const a=[];document.querySelectorAll('.sticky-note').forEach(n=>a.push({id:n.id,l:n.style.left,t:n.style.top,x:n.querySelector('.note-textarea').value}));localStorage.setItem(`${passageId}_notes`,JSON.stringify(a));}
+        function loadNotes(){const j=localStorage.getItem(`${passageId}_notes`);if(!j)return;JSON.parse(j).forEach(n=>{const d=document.createElement('div');d.className='sticky-note';d.id=n.id;d.innerHTML=`<div class="note-header" onmousedown="startDrag(event,'${n.id}')">Note <span class="note-close" onclick="closeNote('${n.id}')">×</span></div><textarea class="note-textarea">${n.x}</textarea>`;d.style.left=n.l;d.style.top=n.t;document.body.appendChild(d);const m=parseInt(n.id.split('_')[1]);if(m>lastNoteId)lastNoteId=m;});}
+
+        // === Auto-save on input ===
+        document.addEventListener('input', e => {
+            if (e.target.matches('.summary-input')) saveAnswers();
+            if (e.target.classList.contains('note-textarea')) saveNotes();
+        });
+
+        // === Page Load ===
+        window.onload = function() {
+            initQuestionNav();
+            loadAnswers();
+            loadHighlights();
+            loadNotes();
+        };
+    </script>
+</body>
+</html>
