@@ -161,13 +161,31 @@
             background: #f0f5ff;
             border-radius: 3px 3px 0 0;
         }
-        .truefalse-options {
+        /* === VERTICAL OPTIONS — A B C D E one below another === */
+        .mc-options-vertical {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            margin: 8px 0 12px 0;
+        }
+        .mc-options-vertical label {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            line-height: 1.5;
+        }
+        .mc-options-vertical input[type="radio"] {
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+        .answer-selector {
             display: flex;
             gap: 15px;
-            margin-top: 4px;
-            flex-wrap: wrap;
+            margin: 6px 0 12px 0;
         }
-        .truefalse-options label {
+        .answer-selector label {
             display: flex;
             align-items: center;
             gap: 4px;
@@ -422,26 +440,21 @@
                         <span class="flag-btn" onclick="toggleFlag(23)" id="flag23">🚩</span>
                         <p><strong>23–24.</strong> What TWO disadvantages of the stadiums built in the twentieth century are stated in the text?</p>
                     </div>
-                    <p style="margin:6px 0; font-size:14px;">Select <strong>TWO</strong> answers:</p>
-                    <div class="truefalse-options">
-                        <label><input type="radio" name="q23" value="A" onchange="saveAnswers()"> A</label>
-                        <label><input type="radio" name="q23" value="B" onchange="saveAnswers()"> B</label>
-                        <label><input type="radio" name="q23" value="C" onchange="saveAnswers()"> C</label>
-                        <label><input type="radio" name="q23" value="D" onchange="saveAnswers()"> D</label>
-                        <label><input type="radio" name="q23" value="E" onchange="saveAnswers()"> E</label>
+                    <!-- VERTICAL OPTIONS — exactly like real IELTS exam -->
+                    <div class="mc-options-vertical">
+                        <label><input type="radio" name="q23" value="A" onchange="saveAnswers()"> A They were too expensive to build.</label>
+                        <label><input type="radio" name="q23" value="B" onchange="saveAnswers()"> B They were less flexible in use.</label>
+                        <label><input type="radio" name="q23" value="C" onchange="saveAnswers()"> C They were often located far from city centres.</label>
+                        <label><input type="radio" name="q23" value="D" onchange="saveAnswers()"> D They were too hot inside.</label>
+                        <label><input type="radio" name="q23" value="E" onchange="saveAnswers()"> E They used too much concrete.</label>
                     </div>
-                    <p style="margin:6px 0; font-size:14px;"><strong>A</strong> They were too expensive to build.<br>
-                    <strong>B</strong> They were less flexible in use.<br>
-                    <strong>C</strong> They were often located far from city centres.<br>
-                    <strong>D</strong> They were too hot inside.<br>
-                    <strong>E</strong> They used too much concrete.</p>
                     <p style="margin-top:10px; font-weight:500;">Answer 24:</p>
-                    <div class="truefalse-options">
-                        <label><input type="radio" name="q24" value="A" onchange="saveAnswers()"> A</label>
-                        <label><input type="radio" name="q24" value="B" onchange="saveAnswers()"> B</label>
-                        <label><input type="radio" name="q24" value="C" onchange="saveAnswers()"> C</label>
-                        <label><input type="radio" name="q24" value="D" onchange="saveAnswers()"> D</label>
-                        <label><input type="radio" name="q24" value="E" onchange="saveAnswers()"> E</label>
+                    <div class="mc-options-vertical">
+                        <label><input type="radio" name="q24" value="A" onchange="saveAnswers()"> A They were too expensive to build.</label>
+                        <label><input type="radio" name="q24" value="B" onchange="saveAnswers()"> B They were less flexible in use.</label>
+                        <label><input type="radio" name="q24" value="C" onchange="saveAnswers()"> C They were often located far from city centres.</label>
+                        <label><input type="radio" name="q24" value="D" onchange="saveAnswers()"> D They were too hot inside.</label>
+                        <label><input type="radio" name="q24" value="E" onchange="saveAnswers()"> E They used too much concrete.</label>
                     </div>
                 </div>
 
@@ -455,27 +468,21 @@
                         <span class="flag-btn" onclick="toggleFlag(25)" id="flag25">🚩</span>
                         <p><strong>25–26.</strong> What TWO benefits of the new generation of stadiums are mentioned by the writer?</p>
                     </div>
-                    <p style="margin:6px 0; font-size:14px;">Select <strong>TWO</strong> answers:</p>
-                    <p style="margin:6px 0; font-size:14px;"><strong>A</strong> They can produce their own electricity.<br>
-                    <strong>B</strong> They are built in the city centre.<br>
-                    <strong>C</strong> They have a wider range of uses.<br>
-                    <strong>D</strong> They cost less to run.<br>
-                    <strong>E</strong> They use less building materials.</p>
-                    <p style="margin-top:10px; font-weight:500;">Answer 25:</p>
-                    <div class="truefalse-options">
-                        <label><input type="radio" name="q25" value="A" onchange="saveAnswers()"> A</label>
-                        <label><input type="radio" name="q25" value="B" onchange="saveAnswers()"> B</label>
-                        <label><input type="radio" name="q25" value="C" onchange="saveAnswers()"> C</label>
-                        <label><input type="radio" name="q25" value="D" onchange="saveAnswers()"> D</label>
-                        <label><input type="radio" name="q25" value="E" onchange="saveAnswers()"> E</label>
+                    <!-- VERTICAL OPTIONS — exactly like real IELTS exam -->
+                    <div class="mc-options-vertical">
+                        <label><input type="radio" name="q25" value="A" onchange="saveAnswers()"> A They can produce their own electricity.</label>
+                        <label><input type="radio" name="q25" value="B" onchange="saveAnswers()"> B They are built in the city centre.</label>
+                        <label><input type="radio" name="q25" value="C" onchange="saveAnswers()"> C They have a wider range of uses.</label>
+                        <label><input type="radio" name="q25" value="D" onchange="saveAnswers()"> D They cost less to run.</label>
+                        <label><input type="radio" name="q25" value="E" onchange="saveAnswers()"> E They use less building materials.</label>
                     </div>
                     <p style="margin-top:10px; font-weight:500;">Answer 26:</p>
-                    <div class="truefalse-options">
-                        <label><input type="radio" name="q26" value="A" onchange="saveAnswers()"> A</label>
-                        <label><input type="radio" name="q26" value="B" onchange="saveAnswers()"> B</label>
-                        <label><input type="radio" name="q26" value="C" onchange="saveAnswers()"> C</label>
-                        <label><input type="radio" name="q26" value="D" onchange="saveAnswers()"> D</label>
-                        <label><input type="radio" name="q26" value="E" onchange="saveAnswers()"> E</label>
+                    <div class="mc-options-vertical">
+                        <label><input type="radio" name="q26" value="A" onchange="saveAnswers()"> A They can produce their own electricity.</label>
+                        <label><input type="radio" name="q26" value="B" onchange="saveAnswers()"> B They are built in the city centre.</label>
+                        <label><input type="radio" name="q26" value="C" onchange="saveAnswers()"> C They have a wider range of uses.</label>
+                        <label><input type="radio" name="q26" value="D" onchange="saveAnswers()"> D They cost less to run.</label>
+                        <label><input type="radio" name="q26" value="E" onchange="saveAnswers()"> E They use less building materials.</label>
                     </div>
                 </div>
             </div>
