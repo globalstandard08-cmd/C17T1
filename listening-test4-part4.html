@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IELTS Listening - Test 4 Part 4</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        body {
+            background-color: #f4f6f9;
+            padding: 20px;
+            line-height: 1.5;
+            position: relative;
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow: visible;
+            position: relative;
+        }
+        .logo-section {
+            text-align: center;
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        .logo-section img {
+            height: 100px;
+            width: auto;
+            object-fit: contain;
+        }
+        .header-bar {
+            background-color: #1f3a5f;
+            color: white;
+            padding: 12px 25px;
+            font-size: 17px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .audio-player {
+            background: #eef2f7;
+            padding: 15px 25px;
+            margin: 15px;
+            border-radius: 6px;
+            text-align: center;
+        }
+        .audio-player h3 {
+            color: #1f3a5f;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        audio {
+            width: 100%;
+            max-width: 500px;
+        }
+        .content {
+            padding: 0 25px 25px;
+            position: relative;
+        }
+        h2 {
+            color: #1f3a5f;
+            margin: 18px 0 10px;
+            font-size: 20px;
+        }
+        .instruction {
+            background-color: #f8fbfe;
+            border-left: 4px solid #1f3a5f;
+            padding: 12px 15px;
+            margin: 12px 0;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 15px;
+        }
+        .notes-title {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            color: #1f3a5f;
+            margin: 12px 0;
+        }
+        .notes-outline {
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            padding: 18px 22px;
+            margin: 12px 0;
+            background: #fefefe;
+        }
+        .notes-section {
+            margin-bottom: 10px;
+        }
+        .sec-heading {
+            font-weight: bold;
+            color: #1f3a5f;
+            margin: 10px 0 4px;
+            font-size: 15px;
+        }
+        .q-row {
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+            font-size: 15px;
+        }
+        .q-bullet {
+            display: inline-block;
+            width: 14px;
+            color: #666;
+            flex-shrink: 0;
+        }
+        .q-label {
+            font-weight: bold;
+            min-width: 32px;
+            color: #1f3a5f;
+            flex-shrink: 0;
+        }
+        .q-text {
+            flex: 1;
+        }
+        .ans-input {
+            width: 130px;
+            height: 36px;
+            border: 2px solid #bbb;
+            border-radius: 4px;
+            font-size: 16px;
+            padding: 0 8px;
+            text-transform: uppercase;
+            outline: none;
+            text-align: center;
+            font-weight: 500;
+            transition: all 0.2s;
+            flex-shrink: 0;
+        }
+        .ans-input:focus {
+            border-color: #1f3a5f;
+            background: #e6f0ff;
+        }
+        .ans-input.filled {
+            border-color: #1f3a5f;
+            background: #f0f5ff;
+        }
+        /* Highlight style */
+        .user-highlight {
+            background-color: #ffd700;
+            padding: 1px 3px;
+            border-radius: 2px;
+            cursor: pointer;
+            display: inline;
+            color: #000;
+        }
+        /* Context Menu */
+        .context-menu {
+            position: absolute;
+            background: #fff;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+            z-index: 9999;
+            display: none;
+            min-width: 160px;
+        }
+        .context-menu div {
+            padding: 10px 14px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .context-menu div:hover {
+            background: #f0f0f0;
+        }
+        /* Sticky Notes */
+        .sticky-note {
+            position: absolute;
+            width: 170px;
+            min-height: 60px;
+            background: #fff9c4;
+            border: 1px solid #fbc02d;
+            border-radius: 4px;
+            padding: 8px;
+            box-shadow: 2px 2px 6px rgba(0,0,0,0.15);
+            z-index: 9998;
+            font-size: 13px;
+        }
+        .note-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            margin-bottom: 4px;
+            font-size: 12px;
+            color: #f57f17;
+        }
+        .note-close {
+            cursor: pointer;
+            font-weight: bold;
+            color: #f57f17;
+        }
+        .note-textarea {
+            width: 100%;
+            height: 45px;
+            border: none;
+            background: transparent;
+            resize: none;
+            outline: none;
+            font-family: inherit;
+            font-size: 13px;
+        }
+        /* Status Bar */
+        .question-status {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 5px;
+            margin: 20px 0;
+            padding: 10px 15px;
+            background: #f0f2f5;
+            border-radius: 4px;
+            border: 1px solid #d0d5dd;
+            font-size: 11px;
+        }
+        .part-label {
+            font-size: 11px;
+            font-weight: bold;
+            color: #444;
+            margin-right: 4px;
+            margin-left: 6px;
+        }
+        .part-separator {
+            width: 10px;
+            height: 22px;
+            flex-shrink: 0;
+        }
+        .q-indicator {
+            width: 22px;
+            height: 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: normal;
+            border-radius: 2px;
+            border: 1px solid #d1d5db;
+            background: #e5e7eb;
+            color: #333;
+            font-size: 12px;
+        }
+        .q-indicator.current {
+            background: #d9dce1;
+            color: #000;
+            border-color: #b0b4b9;
+        }
+        .q-indicator.other {
+            background: #efefef;
+            color: #999;
+            border-color: #e5e7eb;
+        }
+        .q-indicator.answered {
+            background: #10b981;
+            color: white;
+            border-color: #10b981;
+        }
+        .clear-btn {
+            background-color: #dc2626;
+            color: white;
+            border: none;
+            padding: 7px 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 8px;
+        }
+        .clear-btn:hover {
+            background-color: #b91c1c;
+        }
+        /* Navigation */
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 18px;
+            padding-top: 12px;
+            border-top: 1px solid #eee;
+        }
+        .nav-buttons {
+            display: flex;
+            gap: 12px;
+        }
+        .nav-btn {
+            width: 44px;
+            height: 44px;
+            background-color: #1f3a5f;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+        .nav-btn:hover {
+            background-color: #2e568c;
+        }
+    </style>
+</head>
+<body>
+    <!-- Right-click Context Menu -->
+    <div class="context-menu" id="contextMenu">
+        <div id="menuHighlight">✅ Highlight</div>
+        <div id="menuRemove">❌ Remove Highlight</div>
+        <div id="menuNote">📝 Add Note</div>
+    </div>
+    <div class="container">
+        <div class="logo-section">
+            <img src="ielts-logo.png" alt="IELTS Logo">
+        </div>
+        <div class="header-bar">
+            <span>LISTENING TEST 4 - PART 4</span>
+            <span style="font-size:14px; opacity:0.9;">Exam Mode</span>
+        </div>
+        <!-- Audio Player -->
+        <div class="audio-player">
+            <h3>Play Recording - Part 4</h3>
+            <audio controls preload="auto">
+                <source src="test4-part4.mp3" type="audio/mpeg">
+                <source src="https://raw.githubusercontent.com/globalstandard08-cmd/ielts-complete-practice/main/listening/test4-part4.mp3" type="audio/mpeg">
+                Your browser does not support audio playback.
+            
+        </div>
+        <div class="content" id="highlightArea">
+            <h2>Section 4 – Questions 31–40</h2>
+
+            <div class="instruction">
+                <strong>Complete the notes below.</strong><br>
+                Write <strong>ONE WORD ONLY</strong> for each answer.
+            </div>
+
+            <div class="notes-title">Labyrinths</div>
+
+            <div class="notes-outline">
+                <!-- Definition -->
+                <div class="notes-section">
+                    <div class="sec-heading">Definition</div>
+                    <div class="q-row">
+                        <span class="q-bullet">•</span>
+                        <span class="q-text">a winding spiral path leading to a central area</span>
+                    </div>
+                </div>
+
+                <!-- Labyrinths compared with mazes -->
+                <div class="notes-section">
+                    <div class="sec-heading">Labyrinths compared with mazes</div>
+                    <div class="q-row">
+                        <span class="q-bullet">•</span>
+                        <span class="q-label">31</span>
+                        <span class="q-text">Mazes are a type of</span>
+                        <input type="text" class="ans-input" id="ans-box-31" data-q="31" maxlength="25" placeholder="ONE WORD">
+                    </div>
+                    <div class="q-row">
+                        <span class="q-bullet">–</span>
+                        <span class="q-label">32</span>
+                        <span class="q-text">is needed to navigate through a maze</span>
+                        <input type="text" class="ans-input" id="ans-box-32" data-q="32" maxlength="25" placeholder="ONE WORD">
+                    </div>
+                    <div class="q-row">
+                        <span class="q-bullet">–</span>
+                        <span class="q-text">the word 'maze' is derived from a word meaning a feeling of</span>
+                    </div>
+                    <div class="q-row">
+                        <span class="q-bullet">&nbsp;&nbsp;</span>
+                        <span class="q-label">33</span>
+                        <input type="text" class="ans-input" id="ans-box-33" data-q="33" maxlength="25" placeholder="ONE WORD">
+                    </div>
+                    <div class="q-row">
+                        <span class="q-bullet">•</span>
+                        <span class="q-text">Labyrinths represent a journey through life</span>
+                    </div>
+                    <div class="q-row">
+                        <span class="q-bullet">–</span>
+                        <span class="q-label">34</span>
+                        <span class="q-text">they have frequently been used in</span>
+                        <input type="text" class="ans-input" id="ans-box-34" data-q="34" maxlength="25" placeholder="ONE WORD">
+                        <span class="q-text">and prayer</span>
+                    </div>
+                </div>
+
+                <!-- Early examples -->
+                <div class="notes-section">
+                    <div class="sec-heading">Early examples of the labyrinth spiral</div>
+                    <div class="q-row">
+                        <span class="q-bullet">•</span>
+                        <span class="q-label">35</span>
+                        <span class="q-text">Ancient carvings on</span>
+                        <input type="text" class="ans-input" id="ans-box-35" data-q="35" maxlength="25" placeholder="ONE WORD">
+                        <span class="q-text">have been found across many cultures</span>
+                    </div>
+                    <div class="q-row">
+                        <span class="q-bullet">•</span>
+                        <span class="q-text">The Pima, a Native American tribe, wove the symbol on baskets</span>
+                    </div>
+                    <div class="q-row">
+                        <span class="q-bullet">•</span>
+                        <span class="q-label">36</span>
+                        <span class="q-text">Ancient Greeks used the symbol on</span>
+                        <input type="text" class="ans-input" id="ans-box-36" data-q="36" maxlength="25" placeholder="ONE WORD">
+                    </div>
+                </div>
+
+                <!-- Walking labyrinths -->
+                <div class="notes-section">
+                    <div class="sec-heading">Walking labyrinths</div>
+                    <div class="q-row">
+                        <span class="q-bullet">•</span>
+                        <span class="q-label">37</span>
+                        <span class="q-text">The largest surviving example of a turf labyrinth once had a big</span>
+                        <input type="text" class="ans-input" id="ans-box-37" data-q="37" maxlength="25" placeholder="ONE WORD">
+                        <span class="q-text">at its centre</span>
+                    </div>
+                </div>
+
+                <!-- Labyrinths nowadays -->
+                <div class="notes-section">
+                    <div class="sec-heading">Labyrinths nowadays</div>
+                    <div class="q-row">
+                        <span class="q-bullet">•</span>
+                        <span class="q-text">Believed to have a beneficial impact on mental and physical health, e.g., walking a maze can reduce a person's</span>
+                        <span class="q-label">38</span>
+                        <input type="text" class="ans-input" id="ans-box-38" data-q="38" maxlength="25" placeholder="ONE WORD">
+                        <span class="q-text">rate</span>
+                    </div>
+                    <div class="q-row">
+                        <span class="q-bullet">•</span>
+                        <span class="q-text">Used in medical and health and fitness settings and also prisons</span>
+                    </div>
+                    <div class="q-row">
+                        <span class="q-bullet">•</span>
+                        <span class="q-text">Popular with patients, visitors and staff in hospitals</span>
+                    </div>
+                    <div class="q-row">
+                        <span class="q-bullet">–</span>
+                        <span class="q-label">39</span>
+                        <span class="q-text">patients who can't walk can use 'finger labyrinths' made from</span>
+                        <input type="text" class="ans-input" id="ans-box-39" data-q="39" maxlength="25" placeholder="ONE WORD">
+                    </div>
+                    <div class="q-row">
+                        <span class="q-bullet">–</span>
+                        <span class="q-label">40</span>
+                        <span class="q-text">research has shown that Alzheimer's sufferers experience less</span>
+                        <input type="text" class="ans-input" id="ans-box-40" data-q="40" maxlength="25" placeholder="ONE WORD">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question Status Bar -->
+            <div class="question-status">
+                <span class="part-label">P1</span>
+                <div class="q-indicator other" data-q="1">1</div>
+                <div class="q-indicator other" data-q="2">2</div>
+                <div class="q-indicator other" data-q="3">3</div>
+                <div class="q-indicator other" data-q="4">4</div>
+                <div class="q-indicator other" data-q="5">5</div>
+                <div class="q-indicator other" data-q="6">6</div>
+                <div class="q-indicator other" data-q="7">7</div>
+                <div class="q-indicator other" data-q="8">8</div>
+                <div class="q-indicator other" data-q="9">9</div>
+                <div class="q-indicator other" data-q="10">10</div>
+                <div class="part-separator"></div>
+                <span class="part-label">P2</span>
+                <div class="q-indicator other" data-q="11">11</div>
+                <div class="q-indicator other" data-q="12">12</div>
+                <div class="q-indicator other" data-q="13">13</div>
+                <div class="q-indicator other" data-q="14">14</div>
+                <div class="q-indicator other" data-q="15">15</div>
+                <div class="q-indicator other" data-q="16">16</div>
+                <div class="q-indicator other" data-q="17">17</div>
+                <div class="q-indicator other" data-q="18">18</div>
+                <div class="q-indicator other" data-q="19">19</div>
+                <div class="q-indicator other" data-q="20">20</div>
+                <div class="part-separator"></div>
+                <span class="part-label">P3</span>
+                <div class="q-indicator other" data-q="21">21</div>
+                <div class="q-indicator other" data-q="22">22</div>
+                <div class="q-indicator other" data-q="23">23</div>
+                <div class="q-indicator other" data-q="24">24</div>
+                <div class="q-indicator other" data-q="25">25</div>
+                <div class="q-indicator other" data-q="26">26</div>
+                <div class="q-indicator other" data-q="27">27</div>
+                <div class="q-indicator other" data-q="28">28</div>
+                <div class="q-indicator other" data-q="29">29</div>
+                <div class="q-indicator other" data-q="30">30</div>
+                <div class="part-separator"></div>
+                <span class="part-label">P4</span>
+                <div class="q-indicator current" data-q="31">31</div>
+                <div class="q-indicator current" data-q="32">32</div>
+                <div class="q-indicator current" data-q="33">33</div>
+                <div class="q-indicator current" data-q="34">34</div>
+                <div class="q-indicator current" data-q="35">35</div>
+                <div class="q-indicator current" data-q="36">36</div>
+                <div class="q-indicator current" data-q="37">37</div>
+                <div class="q-indicator current" data-q="38">38</div>
+                <div class="q-indicator current" data-q="39">39</div>
+                <div class="q-indicator current" data-q="40">40</div>
+            </div>
+
+            <button class="clear-btn" onclick="clearAll()">Clear All Answers</button>
+
+            <div class="nav-container">
+                <a href="listening-test4-part3.html" class="nav-btn">←</a>
+                <a href="answers-review.html" class="nav-btn">✓</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ✅ Shared storage key — matches answers-review.html
+        const LISTENING_STORAGE_KEY = 'Listening_Test';
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load saved answers Q31-40
+            for (let i = 31; i <= 40; i++) {
+                const input = document.getElementById('ans-box-' + i);
+                if (!input) continue;
+                const savedValue = localStorage.getItem(LISTENING_STORAGE_KEY + '_q' + i);
+                if (savedValue) {
+                    input.value = savedValue;
+                    input.classList.add('filled');
+                    markAnswered(i);
+                }
+            }
+
+            // Save answers as you type
+            for (let i = 31; i <= 40; i++) {
+                const input = document.getElementById('ans-box-' + i);
+                if (!input) continue;
+
+                input.addEventListener('input', function() {
+                    // Trim extra spaces, keep ONE WORD format
+                    let val = this.value.trim().replace(/\s+/g, ' ');
+                    this.value = val;
+
+                    const qNum = parseInt(this.dataset.q);
+                    if (val) {
+                        localStorage.setItem(LISTENING_STORAGE_KEY + '_q' + qNum, val);
+                        this.classList.add('filled');
+                        markAnswered(qNum);
+                    } else {
+                        localStorage.removeItem(LISTENING_STORAGE_KEY + '_q' + qNum);
+                        this.classList.remove('filled');
+                        unmarkAnswered(qNum);
+                    }
+                });
+            }
+
+            // --- Right-click Highlight & Note System ---
+            const highlightArea = document.getElementById('highlightArea');
+            const contextMenu = document.getElementById('contextMenu');
+            let currentRange = null;
+            let lastNoteId = 0;
+
+            highlightArea.addEventListener('contextmenu', function(e) {
+                const sel = window.getSelection();
+                if (!sel || sel.isCollapsed || !sel.toString().trim()) {
+                    contextMenu.style.display = 'none';
+                    return;
+                }
+                e.preventDefault();
+                currentRange = sel.getRangeAt(0);
+                const rect = currentRange.getBoundingClientRect();
+                contextMenu.style.left = (rect.left + window.scrollX) + 'px';
+                contextMenu.style.top = (rect.bottom + window.scrollY + 5) + 'px';
+                contextMenu.style.display = 'block';
+            });
+
+            document.addEventListener('click', () => contextMenu.style.display = 'none');
+
+            document.getElementById('menuHighlight').addEventListener('click', function() {
+                if (!currentRange) return;
+                const span = document.createElement('span');
+                span.className = 'user-highlight';
+                span.textContent = currentRange.toString();
+                currentRange.deleteContents();
+                currentRange.insertNode(span);
+                window.getSelection().removeAllRanges();
+                currentRange = null;
+            });
+
+            document.getElementById('menuRemove').addEventListener('click', function() {
+                if (!currentRange) return;
+                try {
+                    let span = currentRange.commonAncestorContainer;
+                    if (span.nodeType === Node.TEXT_NODE) span = span.parentElement;
+                    if (span?.classList.contains('user-highlight')) {
+                        span.replaceWith(document.createTextNode(span.textContent));
+                        highlightArea.normalize();
+                    }
+                } catch (e) {}
+                window.getSelection().removeAllRanges();
+                currentRange = null;
+            });
+
+            document.getElementById('menuNote').addEventListener('click', function() {
+                if (!currentRange) return;
+                const rect = currentRange.getBoundingClientRect();
+                const noteId = 'note_' + (++lastNoteId);
+                const note = document.createElement('div');
+                note.className = 'sticky-note';
+                note.id = noteId;
+                note.innerHTML = `
+                    <div class="note-header">Note <span class="note-close" onclick="closeNote('${noteId}')">×</span></div>
+                    <textarea class="note-textarea" placeholder="Type your note..."></textarea>
+                `;
+                note.style.left = (rect.right + window.scrollX + 10) + 'px';
+                note.style.top = (rect.top + window.scrollY) + 'px';
+                document.body.appendChild(note);
+                window.getSelection().removeAllRanges();
+                currentRange = null;
+            });
+
+            window.closeNote = function(id) {
+                document.getElementById(id)?.remove();
+            };
+        });
+
+        function clearAll() {
+            if (!confirm("Clear ALL your answers, highlights, and notes? This cannot be undone.")) return;
+            for (let i = 31; i <= 40; i++) {
+                localStorage.removeItem(LISTENING_STORAGE_KEY + '_q' + i);
+                const input = document.getElementById('ans-box-' + i);
+                if (input) {
+                    input.value = '';
+                    input.classList.remove('filled');
+                }
+                unmarkAnswered(i);
+            }
+            document.querySelectorAll('.user-highlight').forEach(span => {
+                span.replaceWith(document.createTextNode(span.textContent));
+            });
+            document.querySelectorAll('.sticky-note').forEach(note => note.remove());
+        }
+
+        function markAnswered(qNum) {
+            const el = document.querySelector(`.q-indicator[data-q="${qNum}"]`);
+            if (el) el.classList.add('answered');
+        }
+
+        function unmarkAnswered(qNum) {
+            const el = document.querySelector(`.q-indicator[data-q="${qNum}"]`);
+            if (el) el.classList.remove('answered');
+        }
+    </script>
+</body>
+</html>
