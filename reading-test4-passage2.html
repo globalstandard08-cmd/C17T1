@@ -3,236 +3,646 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IELTS Reading - Test 4 Passage 2</title>
+    <title>Reading Test — Passage 2</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Arial', sans-serif; }
-        body { background-color: #f4f6f9; padding: 20px; line-height: 1.6; position: relative; user-select: text; }
-        .container { max-width: 920px; margin: 0 auto; background: white; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); overflow: visible; position: relative; }
-        .logo-section { text-align: center; padding: 15px; border-bottom: 1px solid #eee; }
-        .logo-section img { height: 100px; width: auto; object-fit: contain; }
-        .header-bar { background-color: #1f3a5f; color: white; padding: 12px 25px; font-size: 17px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
-        .content { padding: 25px; position: relative; }
-        h2 { color: #1f3a5f; margin-bottom: 15px; font-size: 20px; }
-        h3 { color: #1f3a5f; margin: 18px 0 8px; font-size: 16px; }
-        .instruction { background-color: #f8fbfe; border-left: 4px solid #1f3a5f; padding: 12px 15px; margin: 15px 0; border-radius: 4px; font-weight: 500; font-size: 15px; }
-        .passage-text { font-size: 15px; margin-bottom: 30px; }
-        .questions-block { border-top: 1px dashed #ccc; margin-top: 25px; padding-top: 20px; }
-        .q-row { display: flex; align-items: baseline; flex-wrap: wrap; margin: 8px 0; font-size: 15px; gap: 6px; }
-        .q-label { font-weight: bold; min-width: 32px; color: #1f3a5f; flex-shrink: 0; }
-        .ans-input { width: 110px; height: 32px; border: 2px solid #bbb; border-radius: 4px; font-size: 15px; padding: 0 6px; text-transform: uppercase; outline: none; text-align: center; font-weight: 500; transition: all 0.2s; flex-shrink: 0; }
-        .ans-input:focus { border-color: #1f3a5f; background: #e6f0ff; }
-        .ans-input.filled { border-color: #1f3a5f; background: #f0f5ff; }
-        .two-choice { width: 70px; }
-        .user-highlight { background-color: #ffd700; padding: 1px 3px; border-radius: 2px; cursor: pointer; display: inline; color: #000; }
-        .context-menu { position: absolute; background: #fff; border: 1px solid #ccc; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.2); z-index: 9999; display: none; min-width: 160px; }
-        .context-menu div { padding: 10px 14px; cursor: pointer; font-size: 14px; }
-        .context-menu div:hover { background: #f0f0f0; }
-        .sticky-note { position: absolute; width: 170px; min-height: 60px; background: #fff9c4; border: 1px solid #fbc02d; border-radius: 4px; padding: 8px; box-shadow: 2px 2px 6px rgba(0,0,0,0.15); z-index: 9998; font-size: 13px; }
-        .note-header { display: flex; justify-content: space-between; align-items: center; font-weight: bold; margin-bottom: 4px; font-size: 12px; color: #f57f17; }
-        .note-close { cursor: pointer; font-weight: bold; color: #f57f17; }
-        .note-textarea { width: 100%; height: 45px; border: none; background: transparent; resize: none; outline: none; font-family: inherit; font-size: 13px; }
-        .question-status { display: flex; flex-wrap: wrap; align-items: center; justify-content: flex-start; gap: 5px; margin: 20px 0; padding: 10px 15px; background: #f0f2f5; border-radius: 4px; border: 1px solid #d0d5dd; font-size: 11px; }
-        .part-label { font-size: 11px; font-weight: bold; color: #444; margin-right: 4px; margin-left: 6px; }
-        .q-indicator { width: 22px; height: 22px; display: flex; align-items: center; justify-content: center; font-weight: normal; border-radius: 2px; border: 1px solid #d1d5db; background: #e5e7eb; color: #333; font-size: 12px; }
-        .q-indicator.current { background: #d9dce1; color: #000; border-color: #b0b4b9; }
-        .q-indicator.answered { background: #10b981; color: white; border-color: #10b981; }
-        .clear-btn { background-color: #dc2626; color: white; border: none; padding: 7px 14px; border-radius: 4px; cursor: pointer; font-size: 14px; margin-top: 8px; }
-        .clear-btn:hover { background-color: #b91c1c; }
-        /* ✅ EXACT SAME NAV AS PASSAGE 1 */
-        .nav-buttons { display: flex; justify-content: space-between; align-items: center; margin-top: 18px; padding-top: 12px; border-top: 1px solid #eee; }
-        .back-btn, .next-btn { padding: 8px 16px; background-color: #1f3a5f; color: white; border-radius: 4px; text-decoration: none; font-size: 15px; transition: background 0.2s; }
-        .back-btn:hover, .next-btn:hover { background-color: #2e568c; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+        }
+        body {
+            background-color: #f0f4f8;
+            color: #1a1a1a;
+            line-height: 1.6;
+        }
+        .logo-container {
+            width: 100%;
+            background: #ffffff;
+            border-bottom: 2px solid #1f3a5f;
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 6px rgba(31, 58, 95, 0.12);
+        }
+        .logo {
+            width: 35%;
+            max-width: 320px;
+            height: auto;
+            display: block;
+        }
+        .main-wrapper {
+            display: flex;
+            gap: 18px;
+            padding: 0 18px 12px;
+            height: calc(100vh - 120px);
+        }
+        .passage-column, .questions-column {
+            flex: 1;
+            background: #ffffff;
+            border-radius: 10px;
+            border: 1px solid #c5d2e3;
+            padding: 18px;
+            overflow-y: auto;
+            box-shadow: 0 2px 8px rgba(31, 58, 95, 0.07);
+            position: relative;
+        }
+        h1 {
+            color: #1f3a5f;
+            font-size: 19px;
+            margin-bottom: 14px;
+            text-align: center;
+        }
+        .passage-text p {
+            margin-bottom: 12px;
+            font-size: 15px;
+            line-height: 1.8;
+            text-align: justify;
+        }
+        .passage-text strong {
+            color: #1f3a5f;
+        }
+        .highlight {
+            background-color: #ffd700;
+            padding: 2px 4px;
+            border-radius: 2px;
+            cursor: pointer;
+            color: #000;
+            display: inline;
+        }
+        .questions-section h2 {
+            color: #1f3a5f;
+            font-size: 17px;
+            margin: 18px 0 10px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .instruction {
+            background-color: #f8fbfe;
+            border-left: 3px solid #1f3a5f;
+            padding: 10px 14px;
+            margin-bottom: 16px;
+            font-size: 14px;
+            color: #333;
+        }
+        .question-block {
+            margin-bottom: 16px;
+            scroll-margin-top: 15px;
+        }
+        .question-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            margin-bottom: 6px;
+        }
+        .flag-btn {
+            font-size: 17px;
+            cursor: pointer;
+            color: #999;
+            transition: color 0.2s;
+            user-select: none;
+            flex-shrink: 0;
+            margin-top: 1px;
+        }
+        .flag-btn.flagged {
+            color: #fd7e14;
+        }
+        .question-block p {
+            font-weight: 500;
+            margin-bottom: 8px;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .answer-input {
+            width: 100%;
+            max-width: 220px;
+            padding: 4px 6px;
+            border: 1px solid #c5d2e3;
+            border-radius: 4px;
+            font-size: 14px;
+            background: #f0f4f8;
+            text-transform: uppercase;
+        }
+        .summary-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 14px 18px;
+            margin: 10px 0;
+        }
+        .summary-box p {
+            margin-bottom: 12px;
+            font-weight: normal;
+        }
+        .summary-box p:last-child {
+            margin-bottom: 0;
+        }
+        .summary-q {
+            min-width: 28px;
+            font-weight: bold;
+            color: #1f3a5f;
+        }
+        .summary-input {
+            width: 140px;
+            border: none;
+            border-bottom: 1px dashed #333;
+            padding: 3px 6px;
+            margin: 0 8px;
+            font-size: 14px;
+            text-align: center;
+            background: transparent;
+            outline: none;
+            text-transform: uppercase;
+        }
+        .summary-input:focus {
+            border-bottom: 2px solid #1f3a5f;
+            background: #f0f5ff;
+            border-radius: 3px 3px 0 0;
+        }
+        .truefalse-options {
+            display: flex;
+            gap: 15px;
+            margin-top: 4px;
+        }
+        .truefalse-options label {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .context-menu {
+            position: absolute;
+            background: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+            z-index: 9999;
+            display: none;
+            min-width: 140px;
+        }
+        .context-menu div {
+            padding: 8px 11px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        .context-menu div:hover {
+            background: #f0f4f8;
+        }
+        .sticky-note {
+            position: absolute;
+            width: 160px;
+            min-height: 60px;
+            background: #fff380;
+            border: 1px solid #e6c200;
+            border-radius: 4px;
+            padding: 6px;
+            box-shadow: 2px 2px 7px rgba(0,0,0,0.15);
+            z-index: 9998;
+            font-size: 12px;
+            user-select: none;
+        }
+        .note-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            margin-bottom: 4px;
+            font-size: 11px;
+            color: #886a00;
+            cursor: move;
+        }
+        .note-close {
+            cursor: pointer;
+            font-weight: bold;
+            color: #886a00;
+            user-select: none;
+        }
+        .note-textarea {
+            width: 100%;
+            height: 44px;
+            border: none;
+            background: transparent;
+            resize: none;
+            outline: none;
+            font-family: inherit;
+            font-size: 12px;
+            user-select: text;
+        }
+        .bottom-container {
+            margin: 10px 18px 20px;
+            padding: 10px 12px;
+            background: #ffffff;
+            border-radius: 8px;
+            border: 1px solid #c5d2e3;
+            box-shadow: 0 -2px 5px rgba(31, 58, 95, 0.07);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .question-nav {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 5px;
+        }
+        .nav-label {
+            font-weight: 600;
+            color: #1f3a5f;
+            font-size: 13px;
+            margin-right: 4px;
+        }
+        .q-indicator {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 3px;
+            border: 1px solid #ddd;
+            background: #e5e7eb !important;
+            color: #333;
+            font-size: 11px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .q-indicator:hover {
+            opacity: 0.9;
+        }
+        .q-indicator.answered {
+            background: #10b981 !important;
+            color: white !important;
+            border-color: #10b981 !important;
+        }
+        .q-indicator.flagged {
+            background: #fd7e14 !important;
+            color: white !important;
+            border-color: #fd7e14 !important;
+        }
+        .q-indicator.answered.flagged {
+            background: #fd7e14 !important;
+            border-color: #fd7e14 !important;
+        }
+        .q-indicator.current {
+            border: 2px solid #1f3a5f !important;
+        }
+        .bottom-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .action-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .clear-answers {
+            padding: 6px 12px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 13px;
+            background: #6b7280;
+            color: white;
+        }
+        .clear-answers:hover {
+            background: #4b5563;
+        }
+        .nav-buttons {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-left: auto;
+        }
+        .back-btn, .next-btn {
+            padding: 6px 12px;
+            background: #f0f4f8;
+            color: #1f3a5f;
+            text-decoration: none;
+            border-radius: 6px;
+            border: 1px solid #c5d2e3;
+            font-weight: 500;
+            cursor: pointer;
+            font-size: 13px;
+        }
+        .back-btn:hover, .next-btn:hover {
+            background: #ffffff;
+        }
     </style>
 </head>
 <body>
+    <div class="logo-container">
+        <img src="ielts-logo.png" alt="IELTS Logo" class="logo">
+    </div>
     <div class="context-menu" id="contextMenu">
         <div id="menuHighlight">✅ Highlight</div>
         <div id="menuRemove">❌ Remove Highlight</div>
         <div id="menuNote">📝 Add Note</div>
     </div>
-    <div class="container">
-        <div class="logo-section"><img src="ielts-logo.png" alt="IELTS Logo"></div>
-        <div class="header-bar">
-            <span>READING TEST 4 - PASSAGE 2</span>
-            <span style="font-size:14px; opacity:0.9;">Exam Mode</span>
-        </div>
-        <div class="content" id="highlightArea">
-            <div class="instruction"><strong>You should spend about 20 minutes on Questions 14–26, which are based on Reading Passage 2 below.</strong></div>
-
+    <div class="main-wrapper">
+        <div class="passage-column" id="passageArea">
+            <h1>Reading Passage 2 — Stadiums: past, present and future</h1>
             <div class="passage-text">
-                <h2>Stadiums: past, present and future</h2>
                 <p><strong>A</strong> Stadiums are among the oldest forms of urban architecture: vast stadiums where the public could watch sporting events were at the centre of western city life as far back as the ancient Greek and Roman Empires, well before the construction of the great medieval cathedrals and the grand 19th- and 20th-century railway stations which dominated urban skylines in later eras.<br><br>Today, however, stadiums are regarded with growing scepticism. Construction costs can soar above £1 billion, and stadiums finished for major events such as the Olympic Games or the FIFA World Cup have notably fallen into disuse and disrepair.</p>
-                <br>
                 <p><strong>B</strong> But this need not be the case. History shows that stadiums can drive urban development and adapt to the culture of every age. Even today, architects and planners are finding new ways to adapt the mono-functional sports arena which became emblematic of modernism during the 20th century.</p>
-                <br>
                 <p>The amphitheatre of Arles in southwest France, with a capacity of 25,000 spectators, is perhaps the best example of just how versatile stadiums can be. Built by the Romans in 90 AD, it became a fortress with four towers after the fifth century, and was then transformed into a village containing more than 200 houses. With the growing interest in conservation during the 19th century, it was converted back into an arena for the staging of bullfights, thereby returning the structure to its original use as a venue for public spectacles.</p>
                 <p>Another example is the imposing arena of Verona in northern Italy, with space for 30,000 spectators, which had been built before the Arles amphitheatre and 40 years before Rome's famous Colosseum. It has endured the centuries and is currently considered one of the world's prime sites for opera, thanks to its outstanding acoustics.</p>
-                <br>
                 <p><strong>C</strong> The area in the centre of the Italian town of Lucca, known as the Piazza dell'Anfiteatro, is yet another impressive example of an amphitheatre becoming absorbed into the fabric of the city. The site evolved in a similar way to Arles and was progressively filled with buildings from the Middle Ages until the 19th century, variously used as houses, a salt depot and a prison. But rather than reverting to an arena, it became a market square, designed by Romanticist architect Lorenzo Nottolini. Today, the ruins of the amphitheatre remain embedded in the varied shops and residences surrounding the public square.</p>
-                <br>
                 <p><strong>D</strong> There are many similarities between modern stadiums and the ancient amphitheatres intended for games. But some of the flexibility was lost at the beginning of the 20th century, as stadiums were developed using new products such as steel and reinforced concrete, and made use of bright lights for night-time matches.</p>
-                <br>
                 <p><strong>E</strong> Many such stadiums are situated in suburban areas, designed for sporting use only and surrounded by parking lots. These factors mean that they may not be accessible to the general public, require more energy to run and contribute to urban heat.</p>
-                <br>
                 <p><strong>F</strong> But many of today's most innovative architects see scope for the stadium to help improve the city. Among the current strategies, two seem to be having particular success: the stadium as an urban hub, and as a power plant.<br><br>There's a growing trend for stadiums to be equipped with public spaces and services that serve a function beyond sport, such as hotels, retail outlets, conference centres, restaurants and bars, children's playgrounds and green space. Creating mixed-use developments such as this reinforces compactness and multi-functionality, making more efficient use of land and helping to regenerate urban spaces.<br><br>This opens the space up to families and a wider cross-section of society, instead of catering only to sportspeople and supporters. There have been many examples of this in the UK: the mixed-use facilities at Wembley and Old Trafford have become a blueprint for many other stadiums in the world.</p>
-                <br>
                 <p><strong>G</strong> The phenomenon of stadiums as power stations has arisen from the idea that energy problems can be overcome by integrating interconnected buildings by means of a smart grid, which is an electricity network that uses digital communications technology to detect and react to local changes in usage, without significant energy losses. Stadiums are ideal for these purposes, because their canopies have a large surface area for fitting photovoltaic panels and rise high enough (more than 40 metres) to make use of micro wind turbines.<br><br>Freiburg Mage Solar Stadium in Germany is the first of a new wave of stadiums as power plants, which also includes the Amsterdam Arena and the Kaohsiung Stadium. The latter, inaugurated in 2009, has 8,844 photovoltaic panels producing up to 1.14 GWh of electricity annually. This reduces the annual output of carbon dioxide by 660 tons and supplies up to 80 percent of the surrounding area when the stadium is not in use. This is proof that a stadium can serve its city, and have a decidedly positive impact in terms of reduction of CO₂ emissions.</p>
-                <br>
                 <p><strong>H</strong> Sporting arenas have always been central to the life and culture of cities. In every era, the stadium has acquired new value and uses: from military fortress to residential village, public space to theatre and most recently a field for experimentation in advanced engineering. The stadium of today now brings together multiple functions, thus helping cities to create a sustainable future.</p>
             </div>
+        </div>
+        <div class="questions-column" id="questionsArea">
+            <div class="questions-section">
+                <h2>Questions 14–17</h2>
+                <div class="instruction">
+                    Reading Passage 2 has eight sections, A–H.<br>
+                    Which section contains the following information?<br>
+                    Write the correct letter, A–H, in boxes 14–17 on your answer sheet.<br>
+                    <em>NB You may use any letter more than once.</em>
+                </div>
+                <div class="question-block" id="q14">
+                    <div class="question-header">
+                        <span class="flag-btn" onclick="toggleFlag(14)" id="flag14">🚩</span>
+                        <p><strong>14.</strong> a mention of negative attitudes towards stadium building projects</p>
+                    </div>
+                    <input type="text" class="answer-input" id="q14_input" placeholder="A–H">
+                </div>
+                <div class="question-block" id="q15">
+                    <div class="question-header">
+                        <span class="flag-btn" onclick="toggleFlag(15)" id="flag15">🚩</span>
+                        <p><strong>15.</strong> figures demonstrating the environmental benefits of a certain stadium</p>
+                    </div>
+                    <input type="text" class="answer-input" id="q15_input" placeholder="A–H">
+                </div>
+                <div class="question-block" id="q16">
+                    <div class="question-header">
+                        <span class="flag-btn" onclick="toggleFlag(16)" id="flag16">🚩</span>
+                        <p><strong>16.</strong> examples of the wide range of facilities available at some new stadiums</p>
+                    </div>
+                    <input type="text" class="answer-input" id="q16_input" placeholder="A–H">
+                </div>
+                <div class="question-block" id="q17">
+                    <div class="question-header">
+                        <span class="flag-btn" onclick="toggleFlag(17)" id="flag17">🚩</span>
+                        <p><strong>17.</strong> reference to the disadvantages of the stadiums built during a certain era</p>
+                    </div>
+                    <input type="text" class="answer-input" id="q17_input" placeholder="A–H">
+                </div>
 
-            <div class="questions-block">
-                <h3>Questions 14–17</h3>
-                <div class="instruction">Reading Passage 2 has seven sections, A–H.<br>Which section contains the following information?<br>Write the correct letter, A–H, in boxes 14–17 on your answer sheet.<br><em>NB You may use any letter more than once.</em></div>
-                <div class="q-row"><span class="q-label">14</span><span>a mention of negative attitudes towards stadium building projects</span><input type="text" class="ans-input two-choice" id="ans-box-14" data-q="14" maxlength="1"></div>
-                <div class="q-row"><span class="q-label">15</span><span>figures demonstrating the environmental benefits of a certain stadium</span><input type="text" class="ans-input two-choice" id="ans-box-15" data-q="15" maxlength="1"></div>
-                <div class="q-row"><span class="q-label">16</span><span>examples of the wide range of facilities available at some new stadiums</span><input type="text" class="ans-input two-choice" id="ans-box-16" data-q="16" maxlength="1"></div>
-                <div class="q-row"><span class="q-label">17</span><span>reference to the disadvantages of the stadiums built during a certain era</span><input type="text" class="ans-input two-choice" id="ans-box-17" data-q="17" maxlength="1"></div>
+                <h2>Questions 18–22</h2>
+                <div class="instruction">
+                    Complete the summary below.<br>
+                    Choose <strong>ONE WORD ONLY</strong> from the passage for each answer.<br>
+                    Write your answers in boxes 18–22 on your answer sheet.
+                </div>
+                <div class="summary-box">
+                    <p><strong>Roman amphitheatres</strong></p>
+                    <p style="margin-top:8px;">The Roman stadiums of Europe have proved very versatile. The amphitheatre of Arles, for example, was converted first into a <span class="summary-q">18</span><input type="text" class="summary-input" id="q18_input" placeholder="">, then into a residential area and finally into an arena where spectators could watch <span class="summary-q">19</span><input type="text" class="summary-input" id="q19_input" placeholder="">.</p>
+                    <p style="margin-top:8px;">Meanwhile, the arena in Verona, one of the oldest Roman amphitheatres, is famous today as a venue where <span class="summary-q">20</span><input type="text" class="summary-input" id="q20_input" placeholder=""> is performed.</p>
+                    <p style="margin-top:8px;">The site of Lucca's amphitheatre has also been used for many purposes over the centuries, including the storage of <span class="summary-q">21</span><input type="text" class="summary-input" id="q21_input" placeholder="">. It is now a market square with <span class="summary-q">22</span><input type="text" class="summary-input" id="q22_input" placeholder=""> and homes incorporated into the remains of the Roman amphitheatre.</p>
+                </div>
+
+                <h2>Questions 23–24</h2>
+                <div class="instruction">
+                    Choose <strong>TWO</strong> letters, A–E.<br>
+                    Write the correct letters in boxes 23 and 24 on your answer sheet.
+                </div>
+                <div class="question-block" id="q23">
+                    <div class="question-header">
+                        <span class="flag-btn" onclick="toggleFlag(23)" id="flag23">🚩</span>
+                        <p><strong>23–24.</strong> When comparing twentieth-century stadiums to ancient amphitheatres in Section D, which TWO negative features does the writer mention?</p>
+                    </div>
+                    <p style="margin:6px 0; font-size:13px;">A They are less imaginatively designed.<br>B They are less spacious.<br>C They are in less convenient locations.<br>D They are less versatile.<br>E They are made of less durable materials.</p>
+                    <p style="margin-top:8px;">23. <input type="text" class="answer-input" id="q23_input" placeholder="Letter"></p>
+                    <p>24. <input type="text" class="answer-input" id="q24_input" placeholder="Letter"></p>
+                </div>
+
+                <h2>Questions 25–26</h2>
+                <div class="instruction">
+                    Choose <strong>TWO</strong> letters, A–E.<br>
+                    Write the correct letters in boxes 25 and 26 on your answer sheet.
+                </div>
+                <div class="question-block" id="q25">
+                    <div class="question-header">
+                        <span class="flag-btn" onclick="toggleFlag(25)" id="flag25">🚩</span>
+                        <p><strong>25–26.</strong> Which TWO advantages of modern stadium design does the writer mention?</p>
+                    </div>
+                    <p style="margin:6px 0; font-size:13px;">A offering improved amenities for the enjoyment of sports events<br>B bringing community life back into the city environment<br>C facilitating research into solar and wind energy solutions<br>D enabling local residents to reduce their consumption of electricity<br>E providing a suitable site for the installation of renewable power generators</p>
+                    <p style="margin-top:8px;">25. <input type="text" class="answer-input" id="q25_input" placeholder="Letter"></p>
+                    <p>26. <input type="text" class="answer-input" id="q26_input" placeholder="Letter"></p>
+                </div>
             </div>
-
-            <div class="questions-block">
-                <h3>Questions 18–22</h3>
-                <div class="instruction">Complete the summary below.<br>Choose <strong>ONE WORD ONLY</strong> from the passage for each answer.<br>Write your answers in boxes 18–22 on your answer sheet.</div>
-                <h3>Roman amphitheatres</h3>
-                <p style="margin:10px 0;">The Roman stadiums of Europe have proved very versatile. The amphitheatre of Arles, for example, was converted first into a 18 <input type="text" class="ans-input" id="ans-box-18" data-q="18" maxlength="25">, then into a residential area and finally into an arena where spectators could watch 19 <input type="text" class="ans-input" id="ans-box-19" data-q="19" maxlength="25">.</p>
-                <p style="margin:10px 0;">Meanwhile, the arena in Verona, one of the oldest Roman amphitheatres, is famous today as a venue where 20 <input type="text" class="ans-input" id="ans-box-20" data-q="20" maxlength="25"> is performed.</p>
-                <p style="margin:10px 0;">The site of Lucca's amphitheatre has also been used for many purposes over the centuries, including the storage of 21 <input type="text" class="ans-input" id="ans-box-21" data-q="21" maxlength="25">. It is now a market square with 22 <input type="text" class="ans-input" id="ans-box-22" data-q="22" maxlength="25"> and homes incorporated into the remains of the Roman amphitheatre.</p>
+        </div>
+    </div>
+    <div class="bottom-container">
+        <div class="question-nav" id="questionNav">
+            <span class="nav-label">Questions:</span>
+        </div>
+        <div class="bottom-controls">
+            <div class="action-buttons">
+                <button class="clear-answers" onclick="clearAllAnswers()">🗑️ Clear All Answers</button>
             </div>
-
-            <div class="questions-block">
-                <h3>Questions 23 and 24</h3>
-                <div class="instruction">Choose <strong>TWO</strong> letters, A–E.<br>Write the correct letters in boxes 23 and 24 on your answer sheet.</div>
-                <p style="margin:10px 0; font-weight:bold;">When comparing twentieth-century stadiums to ancient amphitheatres in Section D, which TWO negative features does the writer mention?</p>
-                <div style="margin:6px 0;">A They are less imaginatively designed.</div>
-                <div style="margin:6px 0;">B They are less spacious.</div>
-                <div style="margin:6px 0;">C They are in less convenient locations.</div>
-                <div style="margin:6px 0;">D They are less versatile.</div>
-                <div style="margin:6px 0;">E They are made of less durable materials.</div>
-                <div class="q-row" style="margin-top:12px;"><span class="q-label">23</span><input type="text" class="ans-input two-choice" id="ans-box-23" data-q="23" maxlength="1"><span class="q-label">24</span><input type="text" class="ans-input two-choice" id="ans-box-24" data-q="24" maxlength="1"></div>
-            </div>
-
-            <div class="questions-block">
-                <h3>Questions 25 and 26</h3>
-                <div class="instruction">Choose <strong>TWO</strong> letters, A–E.<br>Write the correct letters in boxes 25 and 26 on your answer sheet.</div>
-                <p style="margin:10px 0; font-weight:bold;">Which TWO advantages of modern stadium design does the writer mention?</p>
-                <div style="margin:6px 0;">A offering improved amenities for the enjoyment of sports events</div>
-                <div style="margin:6px 0;">B bringing community life back into the city environment</div>
-                <div style="margin:6px 0;">C facilitating research into solar and wind energy solutions</div>
-                <div style="margin:6px 0;">D enabling local residents to reduce their consumption of electricity</div>
-                <div style="margin:6px 0;">E providing a suitable site for the installation of renewable power generators</div>
-                <div class="q-row" style="margin-top:12px;"><span class="q-label">25</span><input type="text" class="ans-input two-choice" id="ans-box-25" data-q="25" maxlength="1"><span class="q-label">26</span><input type="text" class="ans-input two-choice" id="ans-box-26" data-q="26" maxlength="1"></div>
-            </div>
-
-            <div class="question-status">
-                <span class="part-label">P2</span>
-                <div class="q-indicator current" data-q="14">14</div>
-                <div class="q-indicator current" data-q="15">15</div>
-                <div class="q-indicator current" data-q="16">16</div>
-                <div class="q-indicator current" data-q="17">17</div>
-                <div class="q-indicator current" data-q="18">18</div>
-                <div class="q-indicator current" data-q="19">19</div>
-                <div class="q-indicator current" data-q="20">20</div>
-                <div class="q-indicator current" data-q="21">21</div>
-                <div class="q-indicator current" data-q="22">22</div>
-                <div class="q-indicator current" data-q="23">23</div>
-                <div class="q-indicator current" data-q="24">24</div>
-                <div class="q-indicator current" data-q="25">25</div>
-                <div class="q-indicator current" data-q="26">26</div>
-            </div>
-
-            <button class="clear-btn" onclick="clearAll()">Clear All Answers</button>
-
-            <!-- ✅ EXACT SAME NAV AS PASSAGE 1 -->
             <div class="nav-buttons">
                 <a href="reading-passage1.html" class="back-btn">← Previous</a>
                 <a href="answers-review.html" class="next-btn">Next →</a>
             </div>
         </div>
     </div>
-
     <script>
         const READING_STORAGE_KEY = 'Reading_Test';
-        document.addEventListener('DOMContentLoaded', function() {
-            for (let i = 14; i <= 26; i++) {
-                const input = document.getElementById('ans-box-' + i);
-                if (!input) continue;
-                const savedValue = localStorage.getItem(READING_STORAGE_KEY + '_q' + i);
-                if (savedValue) { input.value = savedValue; input.classList.add('filled'); markAnswered(i); }
+        const passageId = 'reading-passage2';
+        const TOTAL_QUESTIONS = 40;
+        const Q_START = 14;
+        const Q_END = 26;
+        let currentRange = null;
+        let lastNoteId = 0;
+        let dragNote = null;
+        let dragOffsetX = 0;
+        let dragOffsetY = 0;
+        // === Save Answers ===
+        function saveAnswers() {
+            for (let q = 14; q <= 26; q++) {
+                const el = document.getElementById(`q${q}_input`);
+                if (el) {
+                    let val = el.value.trim().replace(/\s+/g, ' ').toUpperCase();
+                    el.value = val;
+                    localStorage.setItem(`${READING_STORAGE_KEY}_q${q}`, val);
+                }
             }
-            for (let i = 14; i <= 26; i++) {
-                const input = document.getElementById('ans-box-' + i);
-                if (!input) continue;
-                input.addEventListener('input', function() {
-                    let val = this.value.trim().replace(/\s+/g, ' ').toUpperCase();
-                    this.value = val;
-                    const qNum = parseInt(this.dataset.q);
-                    if (val) { localStorage.setItem(READING_STORAGE_KEY + '_q' + qNum, val); this.classList.add('filled'); markAnswered(qNum); }
-                    else { localStorage.removeItem(READING_STORAGE_KEY + '_q' + qNum); this.classList.remove('filled'); unmarkAnswered(qNum); }
-                });
-            }
-            const highlightArea = document.getElementById('highlightArea');
-            const contextMenu = document.getElementById('contextMenu');
-            let currentRange = null, lastNoteId = 0;
-            highlightArea.addEventListener('contextmenu', function(e) {
-                const sel = window.getSelection();
-                if (!sel || sel.isCollapsed || !sel.toString().trim()) { contextMenu.style.display = 'none'; return; }
-                e.preventDefault();
-                currentRange = sel.getRangeAt(0);
-                const rect = currentRange.getBoundingClientRect();
-                contextMenu.style.left = (rect.left + window.scrollX) + 'px';
-                contextMenu.style.top = (rect.bottom + window.scrollY + 5) + 'px';
-                contextMenu.style.display = 'block';
-            });
-            document.addEventListener('click', () => contextMenu.style.display = 'none');
-            document.getElementById('menuHighlight').addEventListener('click', function() {
-                if (!currentRange) return;
-                const span = document.createElement('span');
-                span.className = 'user-highlight';
-                span.textContent = currentRange.toString();
-                currentRange.deleteContents();
-                currentRange.insertNode(span);
-                window.getSelection().removeAllRanges();
-                currentRange = null;
-            });
-            document.getElementById('menuRemove').addEventListener('click', function() {
-                if (!currentRange) return;
-                try {
-                    let span = currentRange.commonAncestorContainer;
-                    if (span.nodeType === Node.TEXT_NODE) span = span.parentElement;
-                    if (span?.classList.contains('user-highlight')) { span.replaceWith(document.createTextNode(span.textContent)); highlightArea.normalize(); }
-                } catch (e) {}
-                window.getSelection().removeAllRanges();
-                currentRange = null;
-            });
-            document.getElementById('menuNote').addEventListener('click', function() {
-                if (!currentRange) return;
-                const rect = currentRange.getBoundingClientRect();
-                const noteId = 'note_' + (++lastNoteId);
-                const note = document.createElement('div');
-                note.className = 'sticky-note';
-                note.id = noteId;
-                note.innerHTML = `<div class="note-header">Note <span class="note-close" onclick="closeNote('${noteId}')">×</span></div><textarea class="note-textarea" placeholder="Type your note..."></textarea>`;
-                note.style.left = (rect.right + window.scrollX + 10) + 'px';
-                note.style.top = (rect.top + window.scrollY) + 'px';
-                document.body.appendChild(note);
-                window.getSelection().removeAllRanges();
-                currentRange = null;
-            });
-            window.closeNote = function(id) { document.getElementById(id)?.remove(); };
-        });
-        function clearAll() {
-            if (!confirm("Clear ALL your answers, highlights, and notes? This cannot be undone.")) return;
-            for (let i = 14; i <= 26; i++) {
-                localStorage.removeItem(READING_STORAGE_KEY + '_q' + i);
-                const input = document.getElementById('ans-box-' + i);
-                if (input) { input.value = ''; input.classList.remove('filled'); }
-                unmarkAnswered(i);
-            }
-            document.querySelectorAll('.user-highlight').forEach(span => span.replaceWith(document.createTextNode(span.textContent)));
-            document.querySelectorAll('.sticky-note').forEach(note => note.remove());
+            updateStatus();
         }
-        function markAnswered(qNum) { const el = document.querySelector(`.q-indicator[data-q="${qNum}"]`); if (el) el.classList.add('answered'); }
-        function unmarkAnswered(qNum) { const el = document.querySelector(`.q-indicator[data-q="${qNum}"]`); if (el) el.classList.remove('answered'); }
+        // === Load Answers ===
+        function loadAnswers() {
+            for (let q = 14; q <= 26; q++) {
+                const val = localStorage.getItem(`${READING_STORAGE_KEY}_q${q}`) || '';
+                const el = document.getElementById(`q${q}_input`);
+                if (el) el.value = val;
+            }
+            // Restore flags
+            for (let q = Q_START; q <= Q_END; q++) {
+                const flagged = localStorage.getItem(`${passageId}_flag_${q}`) === 'true';
+                const flag = document.getElementById('flag'+q);
+                if (flag) flag.classList.toggle('flagged', flagged);
+            }
+            updateStatus();
+        }
+        // === Update Status Dots ===
+        function updateStatus() {
+            for (let q = 1; q <= TOTAL_QUESTIONS; q++) {
+                const statBtn = document.getElementById('stat' + q);
+                if (!statBtn) continue;
+                const val = (localStorage.getItem(`${READING_STORAGE_KEY}_q${q}`) || '').trim();
+                const hasAnswer = val.length > 0;
+                const isFlagged = localStorage.getItem(`${passageId}_flag_${q}`) === 'true';
+                statBtn.classList.remove('answered', 'flagged');
+                if (isFlagged) statBtn.classList.add('flagged');
+                else if (hasAnswer) statBtn.classList.add('answered');
+                const flagIcon = document.getElementById('flag' + q);
+                if (flagIcon) flagIcon.classList.toggle('flagged', isFlagged);
+            }
+        }
+        // === Flag Toggle ===
+        function toggleFlag(qNum) {
+            const flag = document.getElementById('flag' + qNum);
+            const stat = document.getElementById('stat' + qNum);
+            const isFlagged = flag.classList.toggle('flagged');
+            stat.classList.toggle('flagged', isFlagged);
+            localStorage.setItem(`${passageId}_flag_${qNum}`, isFlagged);
+        }
+        // === Clear All ===
+        function clearAllAnswers() {
+            if (!confirm('⚠️ This will clear ALL answers, flags, highlights and notes. Continue?')) return;
+            for (let q = 14; q <= 26; q++) {
+                localStorage.removeItem(`${READING_STORAGE_KEY}_q${q}`);
+                localStorage.removeItem(`${passageId}_flag_${q}`);
+            }
+            document.querySelectorAll('.answer-input, .summary-input').forEach(i => i.value = '');
+            document.querySelectorAll('.flag-btn').forEach(f => f.classList.remove('flagged'));
+            document.querySelectorAll('.highlight').forEach(s => {
+                const p = s.parentNode;
+                p.replaceChild(document.createTextNode(s.textContent), p);
+                p.normalize();
+            });
+            document.querySelectorAll('.sticky-note').forEach(n => n.remove());
+            localStorage.removeItem(`${passageId}_highlights`);
+            localStorage.removeItem(`${passageId}_notes`);
+            updateStatus();
+        }
+        // === Navigation ===
+        function initQuestionNav() {
+            const navContainer = document.getElementById('questionNav');
+            for (let i = 1; i <= TOTAL_QUESTIONS; i++) {
+                const btn = document.createElement('div');
+                btn.className = 'q-indicator';
+                btn.textContent = i;
+                btn.id = 'stat' + i;
+                btn.onclick = () => jumpToQuestion(i);
+                navContainer.appendChild(btn);
+            }
+            updateStatus();
+        }
+        function jumpToQuestion(qNum) {
+            document.querySelectorAll('.q-indicator').forEach(el => el.classList.remove('current'));
+            document.getElementById('stat'+qNum)?.classList.add('current');
+            document.getElementById('q'+qNum)?.scrollIntoView({behavior:'smooth', block:'start'});
+        }
+        // === Highlight & Notes ===
+        function isSelectionValid(sel) {
+            if (!sel || sel.isCollapsed || !sel.toString().trim()) return false;
+            try {
+                const r = sel.getRangeAt(0);
+                const p = r.commonAncestorContainer.nodeType === Node.TEXT_NODE
+                    ? r.commonAncestorContainer.parentElement : r.commonAncestorContainer;
+                const inPassage = document.getElementById('passageArea').contains(p);
+                const inQ = document.getElementById('questionsArea').contains(p);
+                const inInput = p.closest('input,textarea,button,label,.note-close');
+                return (inPassage || inQ) && !inInput;
+            } catch { return false; }
+        }
+        const contextMenu = document.getElementById('contextMenu');
+        document.addEventListener('contextmenu', e => {
+            const sel = window.getSelection();
+            if (!isSelectionValid(sel)) { contextMenu.style.display='none'; return; }
+            e.preventDefault();
+            currentRange = sel.getRangeAt(0).cloneRange();
+            const rc = currentRange.getBoundingClientRect();
+            contextMenu.style.left = (rc.left + window.scrollX) + 'px';
+            contextMenu.style.top = (rc.bottom + window.scrollY + 5) + 'px';
+            contextMenu.style.display = 'block';
+        });
+        document.addEventListener('click', () => contextMenu.style.display='none');
+        document.getElementById('menuHighlight').onclick = () => {
+            if (!currentRange) return;
+            try {
+                const sp = document.createElement('span');
+                sp.className='highlight'; sp.textContent=currentRange.toString();
+                currentRange.deleteContents(); currentRange.insertNode(sp);
+                window.getSelection().removeAllRanges(); currentRange=null;
+                saveHighlights();
+            } catch { alert('Select smaller text.'); }
+        };
+        document.getElementById('menuRemove').onclick = () => {
+            if (!currentRange) return;
+            try {
+                const p = (currentRange.startContainer.nodeType===Node.TEXT_NODE
+                    ? currentRange.startContainer.parentElement : currentRange.startContainer)
+                    .closest('.highlight');
+                if (p) { const par=p.parentNode; par.replaceChild(document.createTextNode(p.textContent),p); par.normalize(); }
+            } catch {}
+            window.getSelection().removeAllRanges(); currentRange=null; saveHighlights();
+        };
+        document.getElementById('menuNote').onclick = () => {
+            if (!currentRange) return;
+            const rc = currentRange.getBoundingClientRect();
+            const id = 'note_' + (++lastNoteId);
+            const note = document.createElement('div');
+            note.className='sticky-note'; note.id=id;
+            note.innerHTML = `<div class="note-header" onmousedown="startDrag(event,'${id}')">Note <span class="note-close" onclick="closeNote('${id}')">×</span></div><textarea class="note-textarea" placeholder="Type note..."></textarea>`;
+            note.style.left = (rc.right + window.scrollX + 8) + 'px';
+            note.style.top = (rc.top + window.scrollY) + 'px';
+            document.body.appendChild(note);
+            window.getSelection().removeAllRanges(); currentRange=null; saveNotes();
+        };
+        window.startDrag = function(e,id) {
+            dragNote=document.getElementById(id);
+            const r=dragNote.getBoundingClientRect();
+            dragOffsetX=e.clientX-r.left; dragOffsetY=e.clientY-r.top;
+            dragNote.style.zIndex='10000'; e.preventDefault();
+        };
+        document.addEventListener('mousemove', e=>{
+            if(!dragNote)return;
+            dragNote.style.left=(e.pageX-dragOffsetX)+'px';
+            dragNote.style.top=(e.pageY-dragOffsetY)+'px';
+        });
+        document.addEventListener('mouseup',()=>{if(dragNote){dragNote.style.zIndex='9998';dragNote=null;saveNotes();}});
+        window.closeNote = id=>{document.getElementById(id)?.remove();saveNotes();};
+        function saveHighlights(){localStorage.setItem(`${passageId}_highlights`,document.getElementById('passageArea').innerHTML);}
+        function loadHighlights(){const h=localStorage.getItem(`${passageId}_highlights`);if(h)document.getElementById('passageArea').innerHTML=h;}
+        function saveNotes(){const a=[];document.querySelectorAll('.sticky-note').forEach(n=>a.push({id:n.id,l:n.style.left,t:n.style.top,x:n.querySelector('.note-textarea').value}));localStorage.setItem(`${passageId}_notes`,JSON.stringify(a));}
+        function loadNotes(){const j=localStorage.getItem(`${passageId}_notes`);if(!j)return;JSON.parse(j).forEach(n=>{const d=document.createElement('div');d.className='sticky-note';d.id=n.id;d.innerHTML=`<div class="note-header" onmousedown="startDrag(event,'${n.id}')">Note <span class="note-close" onclick="closeNote('${n.id}')">×</span></div><textarea class="note-textarea">${n.x}</textarea>`;d.style.left=n.l;d.style.top=n.t;document.body.appendChild(d);const m=parseInt(n.id.split('_')[1]);if(m>lastNoteId)lastNoteId=m;});}
+        // === Auto-save on ANY input change ===
+        document.addEventListener('input', e => {
+            if (e.target.matches('.answer-input, .summary-input')) {
+                saveAnswers();
+            }
+            if (e.target.classList.contains('note-textarea')) saveNotes();
+        });
+        // === Page Load ===
+        window.onload = function() {
+            initQuestionNav();
+            loadAnswers();
+            loadHighlights();
+            loadNotes();
+        };
     </script>
 </body>
 </html>
