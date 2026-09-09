@@ -214,19 +214,21 @@
 </div>
 
 <script>
-const LS_KEY = 'Reading_Test';
+// === STORAGE KEYS — SEPARATED ===
+const LISTENING_KEY = 'Listening_Test';
+const READING_KEY = 'Reading_Test';
 
-// === Load single answer ===
-function loadAnswer(qNum) {
-    return localStorage.getItem(`${LS_KEY}_q${qNum}`) || '';
+// === Load answer by section ===
+function loadAnswer(sectionKey, qNum) {
+    return localStorage.getItem(`${sectionKey}_q${qNum}`) || '';
 }
 
 // === Build answer grid ===
-function makeGrid(containerId, startQ, endQ) {
+function makeGrid(containerId, sectionKey, startQ, endQ) {
     const container = document.getElementById(containerId);
     container.innerHTML = '';
     for (let q = startQ; q <= endQ; q++) {
-        const val = loadAnswer(q);
+        const val = loadAnswer(sectionKey, q);
         const div = document.createElement('div');
         div.className = 'ans-item';
         div.innerHTML = `<span class="ans-num">${q}.</span> ${
@@ -250,13 +252,13 @@ function setBadge(badgeId, wordCount, minWords) {
 }
 
 window.onload = function() {
-    // --- Listening 1–40 ---
-    makeGrid('listeningGrid', 1, 40);
+    // --- LISTENING — SEPARATE ---
+    makeGrid('listeningGrid', LISTENING_KEY, 1, 40);
 
-    // --- Reading — CORRECTED RANGES ---
-    makeGrid('reading1Grid', 1, 13);     // ✅ Passage 1: Q1–13
-    makeGrid('reading2Grid', 14, 26);    // ✅ Passage 2: Q14–26
-    makeGrid('reading3Grid', 27, 40);    // ✅ Passage 3: Q27–40
+    // --- READING — SEPARATE ---
+    makeGrid('reading1Grid', READING_KEY, 1, 13);
+    makeGrid('reading2Grid', READING_KEY, 14, 26);
+    makeGrid('reading3Grid', READING_KEY, 27, 40);
 
     // --- Writing Task 1 ---
     const t1 = localStorage.getItem('task1Input') || '';
@@ -278,7 +280,7 @@ function exportAll() {
     output += '🎧 LISTENING ANSWERS (Q1–40)\n';
     output += '-'.repeat(30) + '\n';
     for (let q = 1; q <= 40; q++) {
-        const val = loadAnswer(q) || '—';
+        const val = loadAnswer(LISTENING_KEY, q) || '—';
         output += `${String(q).padStart(2,' ').padEnd(4,' ')} ${val}\n`;
     }
 
@@ -286,17 +288,17 @@ function exportAll() {
     output += '-'.repeat(30) + '\n';
     output += '\n[Passage 1 — Q1–13]\n';
     for (let q = 1; q <= 13; q++) {
-        const val = loadAnswer(q) || '—';
+        const val = loadAnswer(READING_KEY, q) || '—';
         output += `${String(q).padStart(2,' ').padEnd(4,' ')} ${val}\n`;
     }
     output += '\n[Passage 2 — Q14–26]\n';
     for (let q = 14; q <= 26; q++) {
-        const val = loadAnswer(q) || '—';
+        const val = loadAnswer(READING_KEY, q) || '—';
         output += `${String(q).padStart(2,' ').padEnd(4,' ')} ${val}\n`;
     }
     output += '\n[Passage 3 — Q27–40]\n';
     for (let q = 27; q <= 40; q++) {
-        const val = loadAnswer(q) || '—';
+        const val = loadAnswer(READING_KEY, q) || '—';
         output += `${String(q).padStart(2,' ').padEnd(4,' ')} ${val}\n`;
     }
 
@@ -321,8 +323,10 @@ function exportAll() {
 // === Clear ALL answers & restart ===
 function clearAll() {
     if (!confirm('⚠️ This will CLEAR EVERYTHING — Listening, Reading, AND Writing answers.\n\nThis cannot be undone. Continue?')) return;
-    // Clear ALL answers Q1–40
-    for (let q = 1; q <= 40; q++) localStorage.removeItem(`${LS_KEY}_q${q}`);
+    // Clear LISTENING answers
+    for (let q = 1; q <= 40; q++) localStorage.removeItem(`${LISTENING_KEY}_q${q}`);
+    // Clear READING answers
+    for (let q = 1; q <= 40; q++) localStorage.removeItem(`${READING_KEY}_q${q}`);
     // Clear progress flags
     ['reading-passage1','reading-passage2','reading-passage3'].forEach(p=>{
         for(let q=1;q<=40;q++) localStorage.removeItem(`${p}_flag_${q}`);
